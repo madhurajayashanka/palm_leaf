@@ -1,5 +1,7 @@
 import joblib
 import csv
+import os
+from config import CANONICAL_ENDINGS, normalize_sinhala, CRF_THRESHOLD_DEFAULT, SAFETY_DEFAULT_WINDOW
 
 # ==========================================
 # PHASE 2: SEGMENTER (වාක්‍ය ඛණ්ඩනය)
@@ -7,21 +9,23 @@ import csv
 def word2features(sent, i):
     word = sent[i][0]
     
-    # නව ක්‍රියාපද අවසානයන් (Suffixes) මෙහි එකතු කර ඇත
-    common_endings = ['යි', 'ස්', 'යුතු', 'යේය', 'වේ', 'මැනවි', 'ගනු', 'පෙර', 'පසු', 'කරයි', 'න්න', 'ගන්න', 'තබන්න']
-    
-    is_ending = any(word.endswith(suffix) for suffix in common_endings)
+    # Use canonical endings from config.py (single source of truth)
+    is_ending = any(word.endswith(suffix) for suffix in CANONICAL_ENDINGS)
     
     features = {
         'bias': 1.0,
         'word.lower()': word.lower(),
         'word[-2:]': word[-2:], 
-        'word[-3:]': word[-3:], 
+        'word[-3:]': word[-3:] if len(word) >= 3 else word, 
         'word.length': len(word),
         'is_common_ending': is_ending, 
     }
     if i > 0:
-        features.update({'-1:word.lower()': sent[i-1][0].lower(), '-1:word[-2:]': sent[i-1][0][-2:]})
+        prev_word = sent[i-1][0]
+        features.update({
+            '-1:word.lower()': prev_word.lower(),
+            '-1:word[-2:]': prev_word[-2:],
+        })
     else:
         features['BOS'] = True 
     if i < len(sent) - 1:
@@ -33,14 +37,27 @@ def word2features(sent, i):
 def sent2features(sent):
     return [word2features(sent, i) for i in range(len(sent))]
 
-def segment_text(text, model_path="ayurvedic_segmenter.pkl", threshold=0.15):
+def segment_text(text, model_path="ayurvedic_segmenter.pkl", threshold=None):
+    if threshold is None:
+        threshold = CRF_THRESHOLD_DEFAULT
+
+    # Input validation
+    text = normalize_sinhala(text.strip())
+    if not text:
+        return ""
+    if len(text) > 50000:
+        return "Error: Input text exceeds maximum length (50,000 characters)."
+
     try:
         crf = joblib.load(model_path)
     except FileNotFoundError:
-        return "Error: Segmenter Model not found."
+        return "Error: Segmenter Model not found. Run Phase 1 notebook to train."
+    except Exception as e:
+        return f"Error: Failed to load model — {type(e).__name__}"
 
-    words = text.strip().split()
-    if not words: return ""
+    words = text.split()
+    if not words:
+        return ""
 
     dummy_sent = [(w, "") for w in words]
     features = [sent2features(dummy_sent)]
@@ -62,20 +79,24 @@ def segment_text(text, model_path="ayurvedic_segmenter.pkl", threshold=0.15):
 # ==========================================
 def load_knowledge_graph(csv_filepath="ayurvedic_ingredients_full.csv"):
     kg = {}
+    if not os.path.isfile(csv_filepath):
+        return None
     try:
         with open(csv_filepath, mode='r', encoding='utf-8') as file:
             reader = csv.DictReader(file)
             for row in reader:
-                entity = row["Entity"].strip()
+                entity = normalize_sinhala(row["Entity"].strip())
                 toxicity = row["Toxicity"].strip().lower()
                 
                 # විෂ නැති ඖෂධ මඟ හැරීම
-                if toxicity in ['low', 'none', 'safe', 'no', '']: continue 
+                if toxicity in ['low', 'none', 'safe', 'no', '']:
+                    continue 
                 
-                aliases = [a.strip() for a in row["Aliases"].split(",") if a.strip()]
-                purification = [p.strip() for p in row["Purification_Keywords"].split(",") if p.strip()]
+                aliases = [normalize_sinhala(a.strip()) for a in row["Aliases"].split(",") if a.strip()]
+                purification = [normalize_sinhala(p.strip()) for p in row["Purification_Keywords"].split(",") if p.strip()]
                 
-                if not purification: continue
+                if not purification:
+                    continue
                 
                 kg[entity] = {
                     "aliases": aliases,
@@ -83,14 +104,19 @@ def load_knowledge_graph(csv_filepath="ayurvedic_ingredients_full.csv"):
                     "shodhana_keywords": purification
                 }
         return kg
-    except FileNotFoundError:
+    except (FileNotFoundError, KeyError, csv.Error):
         return None
 
-def analyze_safety(segmented_text, kg, window_size=1):
+def analyze_safety(segmented_text, kg, window_size=None):
+    if window_size is None:
+        window_size = SAFETY_DEFAULT_WINDOW
+
+    segmented_text = normalize_sinhala(segmented_text)
     sentences = [s.strip() for s in segmented_text.split('.') if s.strip()]
     issues_found = 0
-    report_details = [] # UI එකට යැවීමට වාර්තාවක් සෑදීම
+    report_details = []
 
+    # Build sorted toxic terms list (longest first for greedy matching)
     all_toxic_terms = []
     term_to_data = {}
     
@@ -110,7 +136,7 @@ def analyze_safety(segmented_text, kg, window_size=1):
             if f" {term} " in temp_sentence:
                 main_entity, data = term_to_data[term]
                 found_items.append((term, main_entity, data))
-                temp_sentence = temp_sentence.replace(f" {term} ", " [MASK] ") # Masking Bug Fix
+                temp_sentence = temp_sentence.replace(f" {term} ", " [MASK] ")
                 
         for term, main_entity, data in found_items:
             start_index = max(0, i - window_size)

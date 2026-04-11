@@ -1,0 +1,126 @@
+{
+  "window_0": {
+    "accuracy": 0.75,
+    "correct": 3,
+    "total": 4,
+    "details": [
+      {
+        "text": "වාත රෝග සඳහා නියඟලා අලයක් ගෙන. හොඳින් ගොම දියරේ දි...",
+        "expected": "APPROVED",
+        "actual": "REJECTED",
+        "correct": false
+      },
+      {
+        "text": "වාත රෝග සඳහා නියඟලා අලයක් ගෙන කුඩු කරගන්න....",
+        "expected": "REJECTED",
+        "actual": "REJECTED",
+        "correct": true
+      },
+      {
+        "text": "ඉඟුරු සහ මී පැණි මිශ්‍ර කරන්න....",
+        "expected": "APPROVED",
+        "actual": "APPROVED",
+        "correct": true
+      },
+      {
+        "text": "නියඟලා ගොම දියරේ ශෝධනය කර. ජයපාල බීජ කුඩු කරන්න....",
+        "expected": "REJECTED",
+        "actual": "REJECTED",
+        "correct": true
+      }
+    ]
+  },
+  "window_1": {
+    "accuracy": 1.0,
+    "correct": 4,
+    "total": 4,
+    "details": [
+      {
+        "text": "වාත රෝග සඳහා නියඟලා අලයක් ගෙන. හොඳින් ගොම දියරේ දි...",
+        "expected": "APPROVED",
+        "actual": "APPROVED",
+        "correct": true
+      },
+      {
+        "text": "වාත රෝග සඳහා නියඟලා අලයක් ගෙන කුඩු කරගන්න....",
+        "expected": "REJECTED",
+        "actual": "REJECTED",
+        "correct": true
+      },
+      {
+        "text": "ඉඟුරු සහ මී පැණි මිශ්‍ර කරන්න....",
+        "expected": "APPROVED",
+        "actual": "APPROVED",
+        "correct": true
+      },
+      {
+        "text": "නියඟලා ගොම දියරේ ශෝධනය කර. ජයපාල බීජ කුඩු කරන්න....",
+        "expected": "REJECTED",
+        "actual": "REJECTED",
+        "correct": true
+      }
+    ]
+  },
+  "window_2": {
+    "accuracy": 1.0,
+    "correct": 4,
+    "total": 4,
+    "details": [
+      {
+        "text": "වාත රෝග සඳහා නියඟලා අලයක් ගෙන. හොඳින් ගොම දියරේ දි...",
+        "expected": "APPROVED",
+        "actual": "APPROVED",
+        "correct": true
+      },
+      {
+        "text": "වාත රෝග සඳහා නියඟලා අලයක් ගෙන කුඩු කරගන්න....",
+        "expected": "REJECTED",
+        "actual": "REJECTED",
+        "correct": true
+      },
+      {
+        "text": "ඉඟුරු සහ මී පැණි මිශ්‍ර කරන්න....",
+        "expected": "APPROVED",
+        "actual": "APPROVED",
+        "correct": true
+      },
+      {
+        "text": "නියඟලා ගොම දියරේ ශෝධනය කර. ජයපාල බීජ කුඩු කරන්න....",
+        "expected": "REJECTED",
+        "actual": "REJECTED",
+        "correct": true
+      }
+    ]
+  },
+  "window_3": {
+    "accuracy": 1.0,
+    "correct": 4,
+    "total": 4,
+    "details": [
+      {
+        "text": "වාත රෝග සඳහා නියඟලා අලයක් ගෙන. හොඳින් ගොම දියරේ දි...",
+        "expected": "APPROVED",
+        "actual": "APPROVED",
+        "correct": true
+      },
+      {
+        "text": "වාත රෝග සඳහා නියඟලා අලයක් ගෙන කුඩු කරගන්න....",
+        "expected": "REJECTED",
+        "actual": "REJECTED",
+        "correct": true
+      },
+      {
+        "text": "ඉඟුරු සහ මී පැණි මිශ්‍ර කරන්න....",
+        "expected": "APPROVED",
+        "actual": "APPROVED",
+        "correct": true
+      },
+      {
+        "text": "නියඟලා ගොම දියරේ ශෝධනය කර. ජයපාල බීජ කුඩු කරන්න....",
+        "expected": "REJECTED",
+        "actual": "REJECTED",
+        "correct": true
+      }
+    ]
+  }
+}

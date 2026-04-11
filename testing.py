@@ -1,5 +1,6 @@
 import json
 from collections import defaultdict, Counter
+from config import normalize_sinhala
 
 def build_bigram_model(file_path):
     print(f"Reading {file_path}...")
@@ -23,8 +24,8 @@ def build_bigram_model(file_path):
 
         # Loop through the sentence to count pairs
         for i in range(len(words) - 1):
-            word1 = words[i]
-            word2 = words[i+1]
+            word1 = normalize_sinhala(words[i])
+            word2 = normalize_sinhala(words[i+1])
             
             unigram_counts[word1] += 1
             bigram_counts[word1][word2] += 1

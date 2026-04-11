@@ -1,5 +1,10 @@
 import csv
 import os
+import sys
+
+# Allow imports from parent directory
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
+from config import WEAK_SUPERVISION_ENDINGS, normalize_sinhala
 
 # ==============================================================================
 # WEAK SUPERVISION SCRIPT
@@ -10,12 +15,11 @@ import os
 # ==============================================================================
 
 # Input and Output Paths
-INPUT_CORPUS = "../train.txt"
+INPUT_CORPUS = os.path.join(os.path.dirname(__file__), "..", "train.txt")
 OUTPUT_TSV = "train_labeled.tsv"
 
-# Morphological rules: Common sentence-ending suffixes and words in Sinhala Ayurveda
-# These finite verbs, imperatives, and temporal markers denote sentence boundaries.
-ENDINGS = ['යි', 'ස්', 'යුතු', 'යේය', 'වේ', 'මැනවි', 'ගනු', 'පෙර', 'පසු', 'කරයි', 'න්න', 'ගන්න', 'තබන්න', 'වස්', 'නෑ', 'නැත']
+# Endings imported from config.py (canonical source of truth)
+ENDINGS = WEAK_SUPERVISION_ENDINGS
 
 def generate_labeled_data(input_file, output_file):
     print(f"🔄 Starting Weak Supervision Generation...")

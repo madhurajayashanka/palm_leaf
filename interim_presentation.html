@@ -1,0 +1,1209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Interim Evaluation — Ayurvedic NLP Pipeline</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reset.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reveal.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/theme/black.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/plugin/highlight/monokai.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+Sinhala:wght@400;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --c1:#06b6d4;--c2:#8b5cf6;--c3:#f59e0b;--c4:#ef4444;--c5:#22c55e;
+  --bg:#0a0a0f;--card:rgba(15,15,25,.85);--border:rgba(255,255,255,.08);
+  --txt:#e2e8f0;--txt2:#94a3b8;--txt3:#64748b;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);font-family:'Inter',system-ui,sans-serif}
+
+.reveal{font-size:18px;color:var(--txt)}
+.reveal .slides{text-align:left}
+.reveal .slides section{padding:40px 50px}
+.reveal .slides section section{padding:30px 40px}
+
+.reveal h1,.reveal h2,.reveal h3,.reveal h4,.reveal h5{
+  font-family:'Inter',sans-serif;font-weight:800;text-transform:none;
+  letter-spacing:-.03em;line-height:1.15;color:#fff;margin-bottom:.6em;
+}
+.reveal h1{font-size:2.6em}
+.reveal h2{font-size:1.9em}
+.reveal h3{font-size:1.35em}
+.reveal h4{font-size:1.1em}
+.reveal p,.reveal li{line-height:1.65;color:var(--txt)}
+.reveal ul,.reveal ol{display:block;margin:0;padding-left:1.5em}
+.reveal li{margin-bottom:.55em;font-size:.92em}
+.reveal blockquote{border-left:4px solid var(--c2);padding:.8em 1.2em;background:rgba(139,92,246,.08);border-radius:0 10px 10px 0;margin:1em 0;font-style:italic;font-size:.92em}
+.reveal code{font-family:'JetBrains Mono',monospace;background:rgba(255,255,255,.08);padding:.15em .4em;border-radius:5px;font-size:.85em;color:var(--c1)}
+.reveal pre{background:rgba(10,10,20,.9);border:1px solid var(--border);border-radius:12px;padding:1em;font-size:.78em}
+.reveal pre code{background:none;padding:0}
+.reveal a{color:var(--c1);text-decoration:none}
+
+.si{font-family:'Noto Sans Sinhala','Inter',sans-serif;font-weight:600}
+
+/* Gradient text */
+.gt{background:linear-gradient(135deg,var(--c1),var(--c2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;display:inline}
+.gt2{background:linear-gradient(135deg,var(--c3),var(--c4));-webkit-background-clip:text;-webkit-text-fill-color:transparent;display:inline}
+.gt3{background:linear-gradient(135deg,var(--c5),var(--c1));-webkit-background-clip:text;-webkit-text-fill-color:transparent;display:inline}
+
+/* Cards */
+.card{background:var(--card);backdrop-filter:blur(16px);border:1px solid var(--border);border-radius:16px;padding:1.6em;margin:.5em 0;box-shadow:0 8px 32px rgba(0,0,0,.4)}
+.card-sm{background:var(--card);backdrop-filter:blur(10px);border:1px solid var(--border);border-radius:12px;padding:1em 1.2em;margin:.4em 0;box-shadow:0 4px 16px rgba(0,0,0,.3)}
+
+/* Layout */
+.row{display:flex;gap:1.5em;align-items:stretch}
+.col{flex:1}
+.row-center{display:flex;gap:1.5em;align-items:center;justify-content:center}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:1.2em}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1em}
+.center{text-align:center}
+
+/* Tables */
+.tbl{width:100%;border-collapse:collapse;font-size:.82em;margin:.8em 0}
+.tbl th{background:rgba(6,182,212,.12);padding:10px 14px;text-align:left;font-weight:700;color:var(--c1);border-bottom:2px solid rgba(6,182,212,.3)}
+.tbl td{padding:9px 14px;border-bottom:1px solid var(--border);color:var(--txt)}
+.tbl tr:hover td{background:rgba(255,255,255,.02)}
+
+/* Badges */
+.badge{display:inline-block;padding:4px 14px;border-radius:20px;font-size:.7em;font-weight:700;letter-spacing:.5px}
+.b-red{background:rgba(239,68,68,.15);color:#f87171;border:1px solid rgba(239,68,68,.3)}
+.b-green{background:rgba(34,197,94,.15);color:#4ade80;border:1px solid rgba(34,197,94,.3)}
+.b-yellow{background:rgba(245,158,11,.15);color:#fbbf24;border:1px solid rgba(245,158,11,.3)}
+.b-blue{background:rgba(6,182,212,.15);color:#22d3ee;border:1px solid rgba(6,182,212,.3)}
+.b-purple{background:rgba(139,92,246,.15);color:#a78bfa;border:1px solid rgba(139,92,246,.3)}
+
+/* Metrics */
+.metric{text-align:center;padding:1em}
+.metric .val{font-size:2.8em;font-weight:900;line-height:1}
+.metric .lbl{font-size:.7em;text-transform:uppercase;letter-spacing:2px;color:var(--txt3);margin-top:.4em}
+.val-cyan{color:var(--c1)}
+.val-purple{color:var(--c2)}
+.val-amber{color:var(--c3)}
+.val-red{color:var(--c4)}
+.val-green{color:var(--c5)}
+
+/* Pipeline diagram */
+.pipe{display:flex;align-items:center;justify-content:center;gap:0;flex-wrap:wrap;margin:1em 0}
+.pipe-node{padding:14px 20px;border-radius:10px;background:rgba(20,20,35,.95);border:2px solid var(--c1);color:#fff;font-weight:700;font-size:.78em;text-align:center;min-width:140px;position:relative;box-shadow:0 0 20px rgba(6,182,212,.15)}
+.pipe-arrow{width:36px;height:2px;background:linear-gradient(90deg,var(--c1),var(--c2));position:relative;margin:0 2px}
+.pipe-arrow::after{content:'▶';position:absolute;right:-8px;top:-8px;font-size:12px;color:var(--c2)}
+
+/* Highlight */
+.hl{border-left:4px solid var(--c1);padding:.6em 1em;background:rgba(6,182,212,.06);border-radius:0 10px 10px 0;margin:.8em 0;font-size:.9em}
+.hl-warn{border-left:4px solid var(--c4);background:rgba(239,68,68,.06)}
+.hl-ok{border-left:4px solid var(--c5);background:rgba(34,197,94,.06)}
+
+/* Animations */
+.float{animation:float 6s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.pulse{animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.6}}
+
+/* Slide number */
+.reveal .slide-number{font-family:'JetBrains Mono',monospace;font-size:14px;color:var(--txt3);background:rgba(0,0,0,.5);padding:6px 12px;border-radius:8px}
+
+/* Print tweaks */
+@media print{.card,.card-sm{break-inside:avoid;border:1px solid #333}}
+
+/* Progress bar */
+.reveal .progress{height:4px;color:var(--c1)}
+.reveal .progress span{background:linear-gradient(90deg,var(--c1),var(--c2))}
+
+/* Controls */
+.reveal .controls{color:var(--c1)}
+
+/* Word probability table */
+.prob-row{display:flex;justify-content:space-between;padding:5px 8px;border-radius:4px;margin:2px 0;font-family:'JetBrains Mono',monospace;font-size:.78em}
+.prob-row.stop{background:rgba(6,182,212,.12)}
+.prob-row .pw{min-width:120px}
+.prob-row .pp{min-width:80px;text-align:right;color:var(--txt3)}
+.prob-row .pd{min-width:100px;text-align:right}
+.prob-row.stop .pp{color:var(--c1);font-weight:700}
+.prob-row.stop .pd{color:var(--c1);font-weight:700}
+
+/* Section divider */
+.divider{border:none;height:1px;background:linear-gradient(90deg,transparent,var(--border),transparent);margin:1.5em 0}
+
+/* Subtitle */
+.sub{color:var(--txt2);font-size:.85em;font-weight:400;margin-top:-.3em;margin-bottom:1em}
+
+/* Footnote */
+.fn{font-size:.7em;color:var(--txt3);margin-top:1.5em;border-top:1px solid var(--border);padding-top:.6em}
+
+/* Math sizing */
+.katex{font-size:1.1em!important}
+</style>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+
+<!-- ============================================================ -->
+<!-- SLIDE 1: TITLE -->
+<!-- ============================================================ -->
+<section>
+<div style="text-align:center;padding-top:1em">
+  <p style="color:var(--c1);font-size:.85em;letter-spacing:4px;text-transform:uppercase;font-weight:600;margin-bottom:.3em">Interim Evaluation — Phase 1</p>
+  <h1 style="font-size:2.4em;line-height:1.1;margin-bottom:.3em">
+    <span class="gt">Neuro-Symbolic Pipeline</span><br>
+    <span style="font-weight:400;font-size:.55em;color:var(--txt)">for Archaic Sinhala Ayurvedic Manuscripts</span>
+  </h1>
+  <hr class="divider">
+  <div class="row-center" style="margin-top:1.5em">
+    <div class="card-sm" style="min-width:200px;text-align:center">
+      <p style="color:var(--txt3);font-size:.75em;margin:0">Researcher</p>
+      <p style="font-weight:700;font-size:1.05em;margin:.2em 0 0">Madhura Jayashanka</p>
+    </div>
+    <div class="card-sm" style="min-width:200px;text-align:center">
+      <p style="color:var(--txt3);font-size:.75em;margin:0">Domain</p>
+      <p style="font-weight:700;font-size:1.05em;margin:.2em 0 0">Low-Resource Medical NLP</p>
+    </div>
+    <div class="card-sm" style="min-width:200px;text-align:center">
+      <p style="color:var(--txt3);font-size:.75em;margin:0">Phase Status</p>
+      <p style="margin:.2em 0 0"><span class="badge b-green">PHASE 1 COMPLETE</span></p>
+    </div>
+  </div>
+  <p style="color:var(--txt3);font-size:.75em;margin-top:2em">Use ← → arrow keys to navigate &nbsp;|&nbsp; ↓ for sub-slides</p>
+</div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SLIDE 2: RESEARCH CONTEXT -->
+<!-- ============================================================ -->
+<section>
+<h2><span class="gt">Research Context</span></h2>
+<p class="sub">Why this research matters</p>
+<div class="row">
+  <div class="col">
+    <div class="card">
+      <h4 style="color:var(--c3);margin-top:0">🏛️ The Repository</h4>
+      <p>Sri Lanka possesses <strong>30,000+</strong> unprocessed palm-leaf manuscripts (ඕල පොත්) containing centuries of Ayurvedic medicinal knowledge.</p>
+      <p style="color:var(--txt2);font-size:.85em">These texts encode herbal formulations, mineral preparations, and therapeutic procedures — many involving <strong style="color:var(--c4)">highly toxic ingredients</strong> that require specific purification.</p>
+    </div>
+  </div>
+  <div class="col">
+    <div class="card">
+      <h4 style="color:var(--c2);margin-top:0">🎯 Research Gap</h4>
+      <ul>
+        <li><strong>No prior NLP work</strong> on archaic/classical Sinhala</li>
+        <li>Existing Sinhala NLP tools target <em>modern</em> Sinhala only</li>
+        <li>No computational Ayurvedic pharmacovigilance system exists</li>
+        <li>Sinhala classified as <strong>"digitally underserved"</strong> (Joshi et al., ACL 2020)</li>
+      </ul>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SLIDE 3: THE THREE CHALLENGES -->
+<!-- ============================================================ -->
+<section>
+<h2>The Three <span class="gt2">Compounding Challenges</span></h2>
+<p class="sub">Each challenge compounds the next — forming a dependency chain</p>
+<div class="grid3">
+  <div class="card fragment fade-up">
+    <h4 style="color:var(--c4);margin-top:0">Challenge 1</h4>
+    <h3 style="font-size:1.15em;margin-bottom:.4em">Noisy OCR</h3>
+    <p style="font-size:.85em;color:var(--txt2)">Degraded palm leaves → extreme Character Error Rates. Visually similar Sinhala graphemes cause confusion:</p>
+    <p class="si" style="text-align:center;font-size:1.3em;margin:.8em 0;color:var(--c4)">ට ↔ ඩ &nbsp;&nbsp; ව ↔ ච</p>
+    <p style="font-size:.78em;color:var(--txt3)">No parallel "noisy→clean" corpora exist for training neural correction models.</p>
+  </div>
+  <div class="card fragment fade-up" data-fragment-index="2">
+    <h4 style="color:var(--c3);margin-top:0">Challenge 2</h4>
+    <h3 style="font-size:1.15em;margin-bottom:.4em">Zero Punctuation</h3>
+    <p style="font-size:.85em;color:var(--txt2)">Classical Sinhala text flows continuously without periods, commas, or any sentence delimiters.</p>
+    <div class="card-sm si" style="font-size:.9em;line-height:1.8;text-align:center;margin-top:.5em">
+      වාත රෝග සඳහා නියඟලා අලයක් ගෙන හොඳින් සුද්ද කරගනු ඉන්පසු එය ගොම දියරේ දින තුනක් ගිල්වා තබනු මැනවි
+    </div>
+  </div>
+  <div class="card fragment fade-up" data-fragment-index="3">
+    <h4 style="color:var(--c5);margin-top:0">Challenge 3</h4>
+    <h3 style="font-size:1.15em;margin-bottom:.4em">Toxic Ingredients</h3>
+    <p style="font-size:.85em;color:var(--txt2)">Ayurveda uses lethal substances requiring strict purification (ශෝධනය / Shodhana):</p>
+    <table class="tbl" style="font-size:.82em">
+      <tr><td class="si">නියඟලා</td><td style="color:var(--c4)">Gloriosa superba</td></tr>
+      <tr><td class="si">වත්සනාභ</td><td style="color:var(--c4)">Aconitum (Aconite)</td></tr>
+      <tr><td class="si">ගොඩකදුරු</td><td style="color:var(--c4)">Strychnos nux-vomica</td></tr>
+    </table>
+  </div>
+</div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SLIDE 4: RESEARCH QUESTIONS -->
+<!-- ============================================================ -->
+<section>
+<h2>Research <span class="gt">Questions</span></h2>
+<div class="card">
+  <div style="margin-bottom:1.2em" class="fragment fade-up">
+    <span class="badge b-blue">RQ1</span>
+    <p style="margin:.4em 0 0;font-size:.95em">How can noisy OCR output be corrected efficiently when large parallel corpora are <strong>unavailable</strong>?</p>
+  </div>
+  <div style="margin-bottom:1.2em" class="fragment fade-up">
+    <span class="badge b-purple">RQ2</span>
+    <p style="margin:.4em 0 0;font-size:.95em">Can <strong>domain-specific linguistic features</strong> improve sentence boundary detection beyond what deep learning achieves in low-resource settings?</p>
+  </div>
+  <div style="margin-bottom:1.2em" class="fragment fade-up">
+    <span class="badge b-yellow">RQ3</span>
+    <p style="margin:.4em 0 0;font-size:.95em">What is the <strong>minimum training data threshold</strong> at which XLM-RoBERTa overtakes a feature-engineered CRF?</p>
+  </div>
+  <div style="margin-bottom:1.2em" class="fragment fade-up">
+    <span class="badge b-red">RQ4</span>
+    <p style="margin:.4em 0 0;font-size:.95em">How should <strong>cascading failure risks</strong> be mitigated when probabilistic NLP feeds into deterministic safety systems?</p>
+  </div>
+  <div class="fragment fade-up">
+    <span class="badge b-green">RQ5</span>
+    <p style="margin:.4em 0 0;font-size:.95em">What are the architectural implications of combining <strong>probabilistic neural</strong> components with <strong>deterministic knowledge-based</strong> safety validation?</p>
+  </div>
+</div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SLIDE 5: PIPELINE ARCHITECTURE -->
+<!-- ============================================================ -->
+<section>
+<h2>Pipeline <span class="gt">Architecture</span></h2>
+<p class="sub">Three-stage neuro-symbolic design</p>
+
+<div class="card" style="text-align:center;padding:2em">
+  <div class="pipe">
+    <div class="pipe-node fragment fade-right" style="border-color:var(--txt3)">
+      📄 OCR Scanner<br><span style="font-size:.75em;color:var(--txt3);font-weight:400">JSON candidates</span>
+    </div>
+    <div class="pipe-arrow fragment fade-in"></div>
+    <div class="pipe-node fragment fade-up" style="border-color:var(--c3)">
+      <span style="color:var(--c3)">Stage 1A</span><br>Bigram LM + Viterbi<br><span style="font-size:.75em;color:var(--txt3);font-weight:400">OCR Post-Correction</span>
+    </div>
+    <div class="pipe-arrow fragment fade-in"></div>
+    <div class="pipe-node fragment fade-up" style="border-color:var(--c1)">
+      <span style="color:var(--c1)">Stage 1B</span><br>Hybrid CRF Segmenter<br><span style="font-size:.75em;color:var(--txt3);font-weight:400">Sentence Boundaries</span>
+    </div>
+    <div class="pipe-arrow fragment fade-in"></div>
+    <div class="pipe-node fragment fade-left" style="border-color:var(--c5)">
+      <span style="color:var(--c5)">Stage 1C</span><br>KG Safety Guardrail<br><span style="font-size:.75em;color:var(--txt3);font-weight:400">Toxicity Validation</span>
+    </div>
+  </div>
+</div>
+
+<div class="row fragment fade-up" style="margin-top:1em">
+  <div class="card-sm col center">
+    <p style="font-size:.75em;color:var(--txt3);margin:0">Design Principle</p>
+    <p style="font-weight:700;margin:.3em 0 0;font-size:.9em">Neuro-Symbolic Complementarity</p>
+    <p style="font-size:.75em;color:var(--txt2);margin:.2em 0 0">Statistical + deterministic components</p>
+  </div>
+  <div class="card-sm col center">
+    <p style="font-size:.75em;color:var(--txt3);margin:0">Safety Model</p>
+    <p style="font-weight:700;margin:.3em 0 0;font-size:.9em;color:var(--c4)">Hard Veto System</p>
+    <p style="font-size:.75em;color:var(--txt2);margin:.2em 0 0">Neural scores cannot override KG</p>
+  </div>
+  <div class="card-sm col center">
+    <p style="font-size:.75em;color:var(--txt3);margin:0">Human Factor</p>
+    <p style="font-weight:700;margin:.3em 0 0;font-size:.9em;color:var(--c5)">Human-in-the-Loop</p>
+    <p style="font-size:.75em;color:var(--txt2);margin:.2em 0 0">Practitioner-controlled parameters</p>
+  </div>
+</div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SLIDE 6: DATA & RESOURCES -->
+<!-- ============================================================ -->
+<section>
+<h2>Data & <span class="gt">Resources</span></h2>
+<p class="sub">What we work with</p>
+<div class="row">
+  <div class="col">
+    <table class="tbl">
+      <thead><tr><th>Resource</th><th>Details</th><th>Size</th></tr></thead>
+      <tbody>
+        <tr><td><code>cleaned_corpus.txt</code></td><td>Sinhala Ayurvedic sentences</td><td style="color:var(--c1);font-weight:700">70,000 lines</td></tr>
+        <tr><td><code>train_labeled.tsv</code></td><td>Weakly-supervised BIO tags</td><td style="color:var(--c1);font-weight:700">852,140 tokens</td></tr>
+        <tr><td><code>gold_test.tsv</code></td><td>Gold-standard test set</td><td style="color:var(--c1);font-weight:700">500 sentences</td></tr>
+        <tr><td><code>ayurvedic_ingredients_full.csv</code></td><td>Toxicity Knowledge Graph</td><td style="color:var(--c1);font-weight:700">2,100 entities</td></tr>
+        <tr><td><code>bigram_probabilities.json</code></td><td>Trained bigram LM</td><td>197 start words</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="col">
+    <div class="card">
+      <h4 style="color:var(--c3);margin-top:0">⚙️ Weak Supervision Strategy</h4>
+      <p style="font-size:.85em">Manual annotation of 70K archaic Sinhala sentences is infeasible. We use <strong>programmatic labelling</strong>:</p>
+      <div class="hl" style="font-size:.85em">
+        $$\text{label}(w_i) = \begin{cases} \text{STOP} & \text{if } w_i \text{ ends with suffix} \in S \\ \text{STOP} & \text{if } i = |W|-1 \text{ (end of line)} \\ \text{O} & \text{otherwise}\end{cases}$$
+      </div>
+      <p style="font-size:.78em;color:var(--txt3)">Uses 15 morphological suffixes from Sinhala SOV grammar.</p>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SLIDE 7-8: STAGE 1A — BIGRAM LM -->
+<!-- ============================================================ -->
+<section>
+<section>
+<h2>Stage 1A: <span class="gt">Bigram Language Model</span></h2>
+<p class="sub">OCR Post-Correction — Training the language model</p>
+
+<div class="row">
+  <div class="col">
+    <div class="card">
+      <h4 style="color:var(--c3);margin-top:0">📖 Noisy Channel Model</h4>
+      <p style="font-size:.88em">Following Shannon's information theory, OCR correction is a decoding problem:</p>
+      <div class="hl">
+        $$W^* = \arg\max_W P(O|W) \cdot P(W)$$
+      </div>
+      <p style="font-size:.82em;color:var(--txt2)">Where $P(O|W)$ = OCR confidence, $P(W)$ = language model probability.</p>
+      <h4 style="color:var(--c1);margin-top:1em">Bigram Probability</h4>
+      <div class="hl">
+        $$P(w_2 | w_1) = \frac{\text{Count}(w_1, w_2)}{\text{Count}(w_1)}$$
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="card">
+      <h4 style="color:var(--c5);margin-top:0">📊 Training Results</h4>
+      <div class="grid2" style="margin-top:1em">
+        <div class="metric"><div class="val val-cyan">70K</div><div class="lbl">sentences</div></div>
+        <div class="metric"><div class="val val-purple">205</div><div class="lbl">unique unigrams</div></div>
+        <div class="metric"><div class="val val-amber">3,824</div><div class="lbl">bigram pairs</div></div>
+        <div class="metric"><div class="val val-green">197</div><div class="lbl">start words</div></div>
+      </div>
+    </div>
+    <div class="card-sm" style="margin-top:.8em">
+      <h4 style="color:var(--c4);margin-top:0;font-size:.95em">🔧 Why NOT Deep Learning?</h4>
+      <p style="font-size:.8em;color:var(--txt2);margin:0">Neural NMT models require millions of parallel examples. With only 70K sentences and no noisy→clean pairs, a bigram model is both sufficient and interpretable. (Rijhwani et al., EMNLP 2020)</p>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- SLIDE 8: VITERBI DECODER -->
+<section>
+<h2>Stage 1A: <span class="gt">Viterbi Decoder</span></h2>
+<p class="sub">Dynamic programming for optimal word sequence selection</p>
+
+<div class="row">
+  <div class="col">
+    <div class="card">
+      <h4 style="color:var(--c1);margin-top:0">Scoring Equation</h4>
+      <div class="hl">
+        $$V_{t,k} = \max_{x} \Big[ V_{t-1,x} \cdot \big( \alpha \cdot P_{\text{OCR}}(w_t) + \beta \cdot P_{\text{LM}}(w_t | w_{t-1}) \big) \Big]$$
+      </div>
+      <table class="tbl" style="margin-top:1em">
+        <thead><tr><th>Parameter</th><th>Value</th><th>Rationale</th></tr></thead>
+        <tbody>
+          <tr><td>α (OCR weight)</td><td style="color:var(--c1);font-weight:700">0.6</td><td>Trust scanner slightly more</td></tr>
+          <tr><td>β (LM weight)</td><td style="color:var(--c2);font-weight:700">0.4</td><td>Linguistic context correction</td></tr>
+          <tr><td>Smoothing ε</td><td style="color:var(--c3);font-weight:700">0.0001</td><td>Prevent zero-probability paths</td></tr>
+        </tbody>
+      </table>
+      <p style="font-size:.78em;color:var(--txt3);margin-top:.8em"><strong>Complexity:</strong> Reduces $O(S^N)$ → $O(N \cdot S^2)$, yielding <strong style="color:var(--c5)">~0.1s latency</strong></p>
+    </div>
+  </div>
+  <div class="col">
+    <div class="card">
+      <h4 style="color:var(--c3);margin-top:0">🔍 Live Decoding Example</h4>
+      <table class="tbl" style="font-size:.8em">
+        <thead><tr><th>Pos</th><th>Candidates</th><th>Confidence</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td class="si">සහ / මහා / ගහ</td><td>0.98 / 0.12 / 0.05</td></tr>
+          <tr><td>2</td><td class="si">සමේ / ගමේ / කමේ</td><td>0.95 / 0.15 / 0.08</td></tr>
+          <tr><td>3</td><td class="si">රෝග / බෝග / යෝග</td><td>0.92 / 0.18 / 0.04</td></tr>
+          <tr><td>4</td><td class="si">ඇති / නැති / අති</td><td>0.96 / 0.10 / 0.05</td></tr>
+          <tr><td style="color:var(--c4)">5</td><td class="si" style="color:var(--c4)">තැන / බීම / කීම</td><td style="color:var(--c4)">0.009 / 0.22 / 0.11</td></tr>
+        </tbody>
+      </table>
+      <div class="hl-ok" style="margin-top:.8em">
+        <p style="margin:0;font-size:.85em"><strong>Result:</strong> <span class="si">සහ සමේ රෝග ඇති <strong style="color:var(--c1)">තැන</strong></span></p>
+        <p style="margin:.3em 0 0;font-size:.78em;color:var(--c5)">Position 5 corrected via bigram context despite OCR confidence of only 0.009</p>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- SLIDE 9: Stage 1A Edge Cases -->
+<section>
+<h2>Stage 1A: <span class="gt2">Edge Cases & Decisions</span></h2>
+<p class="sub">What went wrong and how we fixed it</p>
+
+<div class="grid2">
+  <div class="card">
+    <h4 style="color:var(--c4);margin-top:0">⚠️ Zero-Probability Paths</h4>
+    <p style="font-size:.85em"><strong>Problem:</strong> If bigram $(w_1, w_2)$ never appeared in corpus, probability = 0, which collapses the entire Viterbi path score to zero.</p>
+    <div class="hl-ok">
+      <p style="margin:0;font-size:.85em"><strong>Solution:</strong> Additive (Laplace) smoothing with $\epsilon = 10^{-4}$ ensures $P(w_2|w_1) > 0$ for all word pairs.</p>
+    </div>
+  </div>
+  <div class="card">
+    <h4 style="color:var(--c3);margin-top:0">⚠️ Out-of-Vocabulary Words</h4>
+    <p style="font-size:.85em"><strong>Problem:</strong> If the correct historical word was never seen in training, the decoder cannot emit it.</p>
+    <div class="hl">
+      <p style="margin:0;font-size:.85em"><strong>Trade-off accepted:</strong> Closed vocabulary prevents hallucinating non-existent medicinal herbs — a safety feature, not a bug.</p>
+    </div>
+  </div>
+  <div class="card" style="grid-column:1/-1">
+    <h4 style="color:var(--c2);margin-top:0">🎯 Design Decision: α=0.6, β=0.4</h4>
+    <p style="font-size:.85em">Why trust the OCR scanner more? Under the assumption that OCR confidence scores are <em>calibrated</em> — the scanner's top candidate is correct ~60% of the time for well-preserved regions. The LM corrects the remaining 40% where scanner confidence is low and linguistic context is strong.</p>
+  </div>
+</div>
+</section>
+</section>
+
+<!-- ============================================================ -->
+<!-- SLIDE 10-14: STAGE 1B — CRF SEGMENTER -->
+<!-- ============================================================ -->
+<section>
+<section>
+<h2>Stage 1B: <span class="gt">Hybrid CRF Segmenter</span></h2>
+<p class="sub">The core thesis contribution — sentence boundary detection</p>
+
+<div class="card float" style="text-align:center;padding:2em;max-width:850px;margin:0 auto">
+  <h3 style="color:var(--c2);margin-top:0;font-size:1.1em">THE CORE HYPOTHESIS</h3>
+  <blockquote style="font-size:1.05em;border-color:var(--c1)">
+    "In low-resource scenarios like archaic Sinhala, a lightweight CRF injected with hand-crafted domain-specific morphological rules outperforms data-hungry multilingual transformers (XLM-RoBERTa, 278M params)."
+  </blockquote>
+  <p class="si" style="font-size:.9em;color:var(--txt2);margin-bottom:0">
+    "සිංහල වැනි අවම දත්ත ඇති භාෂාවකදී, ලෝකයේ දියුණුම Deep Learning මොඩලයකට වඩා, අප අතින් භාෂාමය නීති ඇතුළත් කළ කුඩා CRF මොඩලය ඉතා සාර්ථකයි"
+  </p>
+</div>
+</section>
+
+<!-- WHY CRF -->
+<section>
+<h2>Why <span class="gt">CRF</span> Over Deep Learning?</h2>
+<p class="sub">Theoretical justification for the architectural choice</p>
+
+<div class="row">
+  <div class="col">
+    <div class="card">
+      <h4 style="color:var(--c1);margin-top:0">CRF Formulation</h4>
+      <div class="hl" style="text-align:center">
+        $$P(\mathbf{y}|\mathbf{x}) = \frac{1}{Z(\mathbf{x})} \exp\!\left(\sum_{i}\sum_{j} \lambda_j f_j(y_{i-1}, y_i, \mathbf{x}, i)\right)$$
+      </div>
+      <ul style="font-size:.82em;margin-top:.8em">
+        <li>Models <strong>label-label transitions</strong> ($y_{i-1} \to y_i$)</li>
+        <li>Consecutive STOPs are rare → CRF learns this naturally</li>
+        <li>Feature functions $f_j$ inject domain knowledge <em>directly</em></li>
+      </ul>
+    </div>
+  </div>
+  <div class="col">
+    <div class="card">
+      <h4 style="color:var(--c2);margin-top:0">Linguistic Basis</h4>
+      <p style="font-size:.85em"><strong>Sinhala = SOV language</strong></p>
+      <p style="font-size:.82em;color:var(--txt2)">Subject-Object-Verb → the predicate (verb) naturally occupies sentence-final position. In Ayurvedic instructional texts, sentences end with specific imperative/declarative verb forms.</p>
+      <p style="font-size:.85em;margin-top:.8em"><strong>Agglutinative Morphology</strong></p>
+      <p style="font-size:.82em;color:var(--txt2)">Tense, mood, aspect markers are appended as suffixes to the verb root → suffix matching provides strong boundary signals.</p>
+    </div>
+  </div>
+</div>
+<div class="fn">
+  Shao et al. (TACL 2018): CRFs with morphological features remain competitive for agglutinative languages. Lafferty et al. (ICML 2001): Original CRF paper.
+</div>
+</section>
+
+<!-- MORPHOLOGICAL FEATURES -->
+<section>
+<h2>The <span class="gt">"Hybrid" Feature</span>: <code>is_common_ending</code></h2>
+<p class="sub">Hand-crafted Ayurvedic morphological suffix set — the secret weapon</p>
+
+<div class="row">
+  <div class="col">
+    <table class="tbl">
+      <thead><tr><th>Suffix</th><th>Romanized</th><th>Function</th><th>Example</th></tr></thead>
+      <tbody>
+        <tr class="fragment fade-up"><td class="si" style="font-size:1.1em">මැනවි</td><td>manawi</td><td>Formal imperative</td><td class="si" style="font-size:.85em">කරනු මැනවි</td></tr>
+        <tr class="fragment fade-up"><td class="si" style="font-size:1.1em">ගනු</td><td>ganu</td><td>Imperative "take"</td><td class="si" style="font-size:.85em">කරගනු</td></tr>
+        <tr class="fragment fade-up"><td class="si" style="font-size:1.1em">යුතු</td><td>yuthu</td><td>Obligation "must"</td><td class="si" style="font-size:.85em">කළ යුතු</td></tr>
+        <tr class="fragment fade-up"><td class="si" style="font-size:1.1em">වේ</td><td>wē</td><td>Copula "becomes"</td><td class="si" style="font-size:.85em">ගුණදායක වේ</td></tr>
+        <tr class="fragment fade-up"><td class="si" style="font-size:1.1em">යි</td><td>yi</td><td>Present declarative</td><td class="si" style="font-size:.85em">කරයි</td></tr>
+        <tr class="fragment fade-up"><td class="si" style="font-size:1.1em">යේය</td><td>yēya</td><td>Classical past tense</td><td class="si" style="font-size:.85em">කළ යේය</td></tr>
+      </tbody>
+    </table>
+    <p style="font-size:.75em;color:var(--txt3);margin-top:.5em">+ 6 more: ස්, පෙර, පසු, කරයි, න්න, ගන්න, තබන්න</p>
+  </div>
+  <div class="col">
+    <div class="card" style="font-size:.85em">
+      <h4 style="color:var(--c1);margin-top:0">Complete Feature Vector</h4>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:.88em;line-height:2">
+        <div><code>bias</code> = 1.0</div>
+        <div><code>word.lower()</code> — surface form</div>
+        <div><code>word[-2:]</code> — last 2 chars</div>
+        <div><code>word[-3:]</code> — last 3 chars</div>
+        <div><code>word.length</code> — word length</div>
+        <div style="background:rgba(6,182,212,.15);padding:2px 8px;border-radius:4px;border:1px solid var(--c1)">
+          <code style="color:var(--c1)">is_common_ending</code> <span class="badge b-blue">★ HYBRID</span>
+        </div>
+        <div><code>-1:word.lower()</code> — prev word</div>
+        <div><code>-1:word[-2:]</code> — prev suffix</div>
+        <div><code>+1:word.lower()</code> — next word</div>
+        <div><code>BOS / EOS</code> — boundary flags</div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- CRF TRAINING CONFIG -->
+<section>
+<h2>CRF <span class="gt">Training Configuration</span></h2>
+<p class="sub">Hyperparameters and the critical windowing decision</p>
+
+<div class="row">
+  <div class="col">
+    <table class="tbl">
+      <thead><tr><th>Parameter</th><th>Value</th><th>Justification</th></tr></thead>
+      <tbody>
+        <tr><td>Algorithm</td><td style="color:var(--c1);font-weight:700">L-BFGS</td><td>Standard quasi-Newton for CRFs</td></tr>
+        <tr><td>L1 regularization (c₁)</td><td style="color:var(--c1);font-weight:700">0.1</td><td>Feature sparsity</td></tr>
+        <tr><td>L2 regularization (c₂)</td><td style="color:var(--c1);font-weight:700">0.1</td><td>Weight explosion prevention</td></tr>
+        <tr><td>Max iterations</td><td style="color:var(--c1);font-weight:700">100</td><td>Sufficient for convergence</td></tr>
+        <tr><td>Chunk size</td><td style="color:var(--c1);font-weight:700">30 words</td><td>See below ↓</td></tr>
+        <tr><td>All transitions</td><td style="color:var(--c1);font-weight:700">True</td><td>O↔STOP both directions</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="col">
+    <div class="card" style="border-color:var(--c4)">
+      <h4 style="color:var(--c4);margin-top:0">🐛 Critical Bug Found & Fixed</h4>
+      <p style="font-size:.85em"><strong>The EOS Position Bias:</strong></p>
+      <p style="font-size:.82em;color:var(--txt2)"><code>train_labeled.tsv</code> has one sequence per line (~12 words). STOP tags appear predominantly at line-end. If trained on these short sequences, CRF learns <strong>STOP ≈ EOS</strong> and fails on continuous text.</p>
+      <div class="hl-ok" style="margin-top:.8em">
+        <p style="margin:0;font-size:.85em"><strong>Fix:</strong> Load data as a <strong>continuous stream</strong>, chunk into fixed 30-word windows. STOP tags now appear at arbitrary positions within windows.</p>
+      </div>
+      <p style="font-size:.78em;color:var(--txt3);margin-top:.5em">This was <code>continuous=True</code> mode in <code>load_data()</code></p>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- CRF INFERENCE DEMO -->
+<section>
+<h2>CRF <span class="gt">Inference Demo</span></h2>
+<p class="sub">Word-by-word STOP probability analysis (threshold = 0.15)</p>
+
+<div class="row">
+  <div class="col">
+    <div class="card" style="padding:1em 1.2em">
+      <div style="display:flex;justify-content:space-between;border-bottom:1px solid var(--border);padding-bottom:6px;margin-bottom:6px;font-size:.75em;color:var(--txt3);font-weight:700">
+        <span style="min-width:130px">Word</span><span style="min-width:70px;text-align:right">P(STOP)</span><span style="min-width:90px;text-align:right">Decision</span>
+      </div>
+      <div class="prob-row"><span class="pw si">වාත</span><span class="pp">0.0000</span><span class="pd" style="color:var(--txt3)">continue</span></div>
+      <div class="prob-row"><span class="pw si">රෝග</span><span class="pp">0.0000</span><span class="pd" style="color:var(--txt3)">continue</span></div>
+      <div class="prob-row"><span class="pw si">සඳහා</span><span class="pp">0.0000</span><span class="pd" style="color:var(--txt3)">continue</span></div>
+      <div class="prob-row"><span class="pw si">නියඟලා</span><span class="pp">0.0000</span><span class="pd" style="color:var(--txt3)">continue</span></div>
+      <div class="prob-row"><span class="pw si">අලයක්</span><span class="pp">0.0000</span><span class="pd" style="color:var(--txt3)">continue</span></div>
+      <div class="prob-row stop"><span class="pw si">යහපති</span><span class="pp">0.9850</span><span class="pd">→ STOP ●</span></div>
+      <div class="prob-row"><span class="pw si">හොඳින්</span><span class="pp">0.0000</span><span class="pd" style="color:var(--txt3)">continue</span></div>
+      <div class="prob-row"><span class="pw si">සුද්ද</span><span class="pp">0.0000</span><span class="pd" style="color:var(--txt3)">continue</span></div>
+      <div class="prob-row stop"><span class="pw si">කරගනු</span><span class="pp">0.9998</span><span class="pd">→ STOP ●</span></div>
+      <div class="prob-row"><span class="pw si">ඉන්පසු</span><span class="pp">0.0001</span><span class="pd" style="color:var(--txt3)">continue</span></div>
+      <div class="prob-row stop"><span class="pw si">මැනවි</span><span class="pp">0.9996</span><span class="pd">→ STOP ●</span></div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="card">
+      <h4 style="color:var(--c1);margin-top:0">Threshold Selection</h4>
+      <table class="tbl">
+        <thead><tr><th>θ value</th><th>Effect</th></tr></thead>
+        <tbody>
+          <tr><td>0.10</td><td>Aggressive — more breaks, higher recall</td></tr>
+          <tr><td style="color:var(--c1);font-weight:700">0.15 ★</td><td><strong>Balanced — used in production</strong></td></tr>
+          <tr><td>0.30</td><td>Conservative — fewer breaks, higher precision</td></tr>
+        </tbody>
+      </table>
+      <div class="hl" style="margin-top:1em;text-align:center">
+        $$\text{if } P(\text{STOP}|w_i) > \theta \text{, insert "." after } w_i$$
+      </div>
+    </div>
+    <div class="card-sm" style="margin-top:.8em">
+      <h4 style="color:var(--c5);margin-top:0;font-size:.95em">Key Observation</h4>
+      <p style="font-size:.82em;margin:0;color:var(--txt2)">The CRF assigns near-zero probabilities to non-boundary words and near-1.0 to real boundaries. The model is <strong>highly confident</strong> — the suffix feature dominates.</p>
+    </div>
+  </div>
+</div>
+</section>
+</section>
+
+<!-- ============================================================ -->
+<!-- SLIDE 15-17: EVALUATION RESULTS -->
+<!-- ============================================================ -->
+<section>
+<section>
+<h2>CRF <span class="gt3">Evaluation Results</span></h2>
+<p class="sub">Gold standard test: 500 sentences, 5,573 tokens</p>
+
+<div class="grid3" style="margin-bottom:1.2em">
+  <div class="card center">
+    <div class="metric"><div class="val val-cyan" style="font-size:3em">96.7%</div><div class="lbl">Overall Accuracy</div></div>
+  </div>
+  <div class="card center">
+    <div class="metric"><div class="val val-purple" style="font-size:3em">0.83</div><div class="lbl">F1 (STOP class)</div></div>
+  </div>
+  <div class="card center">
+    <div class="metric"><div class="val val-green" style="font-size:3em">~0.05s</div><div class="lbl">Latency (CPU)</div></div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col">
+    <div class="card">
+      <h4 style="margin-top:0;color:var(--c1)">Per-Class Metrics</h4>
+      <table class="tbl">
+        <thead><tr><th>Class</th><th>Precision</th><th>Recall</th><th>F1</th><th>Support</th></tr></thead>
+        <tbody>
+          <tr><td>O</td><td>0.9744</td><td>0.9888</td><td>0.9815</td><td>4,999</td></tr>
+          <tr><td style="color:var(--c1);font-weight:700">STOP</td><td style="color:var(--c1)">0.8880</td><td style="color:var(--c1)">0.7735</td><td style="color:var(--c1);font-weight:700">0.8268</td><td>574</td></tr>
+          <tr style="border-top:2px solid var(--border)"><td><strong>Macro</strong></td><td>0.9312</td><td>0.8812</td><td>0.9042</td><td>5,573</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="col">
+    <div class="card">
+      <h4 style="margin-top:0;color:var(--c3)">Segmentation Boundary Test</h4>
+      <table class="tbl">
+        <thead><tr><th>Metric</th><th>Value</th></tr></thead>
+        <tbody>
+          <tr><td>Predicted Sentences</td><td>8</td></tr>
+          <tr><td>Expected Sentences</td><td>8</td></tr>
+          <tr><td style="color:var(--c5)">Correct (TP)</td><td style="color:var(--c5);font-weight:700">7</td></tr>
+          <tr><td style="color:var(--c4)">Spurious (FP)</td><td>1</td></tr>
+          <tr><td style="color:var(--c3)">Missed (FN)</td><td>1</td></tr>
+          <tr style="border-top:2px solid var(--border)"><td><strong>Boundary F1</strong></td><td style="color:var(--c1);font-weight:700">87.5%</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- EVALUATION STRATEGY -->
+<section>
+<h2>Evaluation <span class="gt2">Circularity Trap</span></h2>
+<p class="sub">A critical methodological decision that evaluators WILL ask about</p>
+
+<div class="row">
+  <div class="col">
+    <div class="card" style="border-color:var(--c4)">
+      <h4 style="color:var(--c4);margin-top:0">⚠️ The Problem</h4>
+      <p style="font-size:.88em">The 852K training labels were generated using the <strong>same morphological suffix rules</strong> that appear as CRF features.</p>
+      <p style="font-size:.88em;color:var(--txt2)">A standard 80/20 random split would produce <strong style="color:var(--c4)">~100% circular accuracy</strong> — the model trivially replicates the labelling heuristic!</p>
+      <div class="hl-warn">
+        <p style="margin:0;font-size:.85em">This is NOT a valid evaluation. Any reviewer would reject this.</p>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="card" style="border-color:var(--c5)">
+      <h4 style="color:var(--c5);margin-top:0">✅ Our Resolution</h4>
+      <p style="font-size:.88em">We train on <strong>full</strong> <code>train_labeled.tsv</code> but evaluate on <code>gold_test.tsv</code> — a <strong>separate gold standard</strong> with 500 manually-verified sentences.</p>
+      <ul style="font-size:.82em">
+        <li>Completely isolated from weak supervision rules</li>
+        <li>Manually validated sentence boundaries</li>
+        <li>Produces realistic metrics: 96.7% accuracy, F1≈0.83</li>
+        <li>Same methodology used in <code>evaluation/evaluate.py</code></li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="card-sm fragment fade-up" style="margin-top:.8em;text-align:center">
+  <p style="margin:0;font-size:.88em">Additionally, our evaluation framework includes: <strong>5-fold CV</strong>, <strong>ablation studies</strong>, <strong>baseline comparisons</strong> (majority, random, rule-only), <strong>McNemar's test</strong>, and <strong>bootstrap 95% CI</strong></p>
+</div>
+</section>
+</section>
+
+<!-- ============================================================ -->
+<!-- SLIDE 18-21: STAGE 1C — SAFETY GUARDRAIL -->
+<!-- ============================================================ -->
+<section>
+<section>
+<h2>Stage 1C: <span class="gt">Safety Guardrail</span></h2>
+<p class="sub">Knowledge Graph toxicity validation — the hard veto system</p>
+
+<div class="hl-warn" style="margin-bottom:1.2em">
+  <p style="margin:0;font-size:.95em"><strong>Patient Safety Rule:</strong> Neural "soft scores" must NEVER override the KG verdict. If a toxic ingredient lacks purification, it is deterministically <span style="color:var(--c4);font-weight:700">REJECTED</span>.</p>
+</div>
+
+<div class="row">
+  <div class="col">
+    <div class="card">
+      <h4 style="color:var(--c1);margin-top:0">Knowledge Graph Schema</h4>
+      <table class="tbl">
+        <thead><tr><th>Field</th><th>Example</th></tr></thead>
+        <tbody>
+          <tr><td>Entity</td><td class="si">නියඟලා (Niyangala)</td></tr>
+          <tr><td>Aliases</td><td class="si">ගිනිසිළුව, ලාංගලී</td></tr>
+          <tr><td>Toxicity</td><td><span class="badge b-red">High</span></td></tr>
+          <tr><td>Purification</td><td class="si" style="font-size:.85em">ශෝධනය, ගොම දියරේ, එළකිරි</td></tr>
+        </tbody>
+      </table>
+      <div class="grid2" style="margin-top:1em">
+        <div class="metric"><div class="val val-red" style="font-size:2.2em">2,100</div><div class="lbl">Total Entities</div></div>
+        <div class="metric"><div class="val val-amber" style="font-size:2.2em">1,162</div><div class="lbl">Toxic Entities</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="card">
+      <h4 style="color:var(--c5);margin-top:0">Algorithm</h4>
+      <pre style="font-size:.8em"><code>for each sentence s_i:
+  for each toxic_term t (longest-first):
+    if t found in s_i (space-padded):
+      context ← sentences[i-k : i+k+1]
+      if NO purification keyword in context:
+        → ALERT (missing purification)
+      mask t → [MASK]  # prevent double-count
+
+if alerts > 0: → REJECTED
+else: → APPROVED</code></pre>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- EDGE CASE ENGINEERING -->
+<section>
+<h2>Safety <span class="gt">Engineering Edge Cases</span></h2>
+<p class="sub">Three critical bugs found and fixed during development</p>
+
+<div class="grid2" style="gap:1em">
+  <div class="card fragment fade-up">
+    <h4 style="color:var(--c3);margin-top:0">1. Substring Match Bug</h4>
+    <p style="font-size:.85em"><strong>Problem:</strong> Matching <span class="si">"ජයපාල"</span> inside <span class="si">"ජයපාලක්ෂේත්‍ර"</span> (a harmless place name).</p>
+    <div class="hl-ok">
+      <p style="margin:0;font-size:.85em"><strong>Fix:</strong> Pad each sentence with spaces: <code>f" {sentence} "</code> and search for <code>f" {term} "</code></p>
+    </div>
+  </div>
+  <div class="card fragment fade-up">
+    <h4 style="color:var(--c1);margin-top:0">2. Short-Alias Double-Count</h4>
+    <p style="font-size:.85em"><strong>Problem:</strong> After matching <span class="si">"ජයපාල ඇට"</span>, the shorter alias <span class="si">"ජයපාල"</span> fires again on the same text.</p>
+    <div class="hl-ok">
+      <p style="margin:0;font-size:.85em"><strong>Fix:</strong> Global masking — replace matched entity with <code>[MASK]</code> after detection.</p>
+    </div>
+  </div>
+  <div class="card fragment fade-up">
+    <h4 style="color:var(--c4);margin-top:0">3. Match Order</h4>
+    <p style="font-size:.85em"><strong>Problem:</strong> <span class="si">"ජයපාල"</span> matches before the more specific <span class="si">"ජයපාල ඇට"</span>, losing the detailed entity info.</p>
+    <div class="hl-ok">
+      <p style="margin:0;font-size:.85em"><strong>Fix:</strong> Sort all toxic terms by length <strong>descending</strong> → longest-match-first.</p>
+    </div>
+  </div>
+  <div class="card fragment fade-up">
+    <h4 style="color:var(--c2);margin-top:0">4. Non-Toxic Noise</h4>
+    <p style="font-size:.85em"><strong>Problem:</strong> KG contained Low/None/Safe entities that triggered unnecessary STOP checks, creating false positives.</p>
+    <div class="hl-ok">
+      <p style="margin:0;font-size:.85em"><strong>Fix:</strong> Filter: skip entities with <code>Toxicity ∈ {Low, None, Safe, No, ""}</code>. Only 1,162 of 2,100 entities are genuinely toxic.</p>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- CONTEXT WINDOW -->
+<section>
+<h2>Dynamic <span class="gt">Context Window</span></h2>
+<p class="sub">The fundamental safety-vs-context trade-off</p>
+
+<div class="row">
+  <div class="col">
+    <div class="card">
+      <h4 style="margin-top:0">The Trade-Off Visualized</h4>
+      <div style="margin:.8em 0">
+        <div style="display:flex;align-items:center;gap:1em;margin-bottom:1em" class="fragment fade-up">
+          <span class="badge b-green" style="min-width:70px;text-align:center">k = 0</span>
+          <div>
+            <p style="margin:0;font-size:.85em;font-weight:700">Strict Mode</p>
+            <p style="margin:0;font-size:.78em;color:var(--txt2)">Only checks the exact sentence. Maximum patient safety. Higher false positives.</p>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:1em;margin-bottom:1em" class="fragment fade-up">
+          <span class="badge b-yellow" style="min-width:70px;text-align:center">k = 1</span>
+          <div>
+            <p style="margin:0;font-size:.85em;font-weight:700">Contextual Mode</p>
+            <p style="margin:0;font-size:.78em;color:var(--txt2)">±1 sentence context. Better understanding, but risk of cross-sentence leakage.</p>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:1em" class="fragment fade-up">
+          <span class="badge b-red" style="min-width:70px;text-align:center">k = 2+</span>
+          <div>
+            <p style="margin:0;font-size:.85em;font-weight:700">Wide Window</p>
+            <p style="margin:0;font-size:.78em;color:var(--txt2)">May accidentally validate toxic ingredients using purification from unrelated adjacent recipes.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="card" style="border-color:var(--c2)">
+      <h4 style="color:var(--c2);margin-top:0">🧑‍⚕️ Human-in-the-Loop Resolution</h4>
+      <p style="font-size:.85em">Rather than hard-coding k, the <strong>Streamlit UI provides a slider</strong> allowing practitioners to adjust the context window based on manuscript-specific structure.</p>
+      <div class="hl">
+        <p style="margin:0;font-size:.85em;text-align:center">$$k_{\text{eff}} = \text{practitioner\_adjustment}(k_{\text{default}}, \text{complexity})$$</p>
+      </div>
+      <p style="font-size:.82em;color:var(--txt2);margin-top:.8em">AI acts as <strong>collaborative augmented intelligence</strong> rather than a brittle autonomous agent.</p>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- SAFETY TEST RESULTS -->
+<section>
+<h2>Safety Guardrail <span class="gt3">Test Results</span></h2>
+<p class="sub">8 test scenarios covering all edge cases</p>
+
+<div class="card" style="padding:1em 1.5em">
+<table class="tbl" style="font-size:.78em">
+  <thead><tr><th>#</th><th>Test Scenario</th><th>k</th><th>Expected</th><th>Actual</th><th>Result</th></tr></thead>
+  <tbody>
+    <tr><td>1</td><td>CRF text with purification context</td><td>1</td><td>APPROVED</td><td>APPROVED</td><td><span class="badge b-green">PASS</span></td></tr>
+    <tr><td>2</td><td class="si">ජයපාල + එළකිරි purification</td><td>1</td><td>APPROVED</td><td>APPROVED</td><td><span class="badge b-green">PASS</span></td></tr>
+    <tr><td>3</td><td>Strict mode (k=0) — missing purification</td><td>0</td><td>REJECTED</td><td>REJECTED</td><td><span class="badge b-green">PASS</span></td></tr>
+    <tr><td>4</td><td>Baseline safe herbs (control)</td><td>0</td><td>APPROVED</td><td>APPROVED</td><td><span class="badge b-green">PASS</span></td></tr>
+    <tr><td>5</td><td style="color:var(--c4)">Invalid purification (water only)</td><td>1</td><td>REJECTED</td><td style="color:var(--c4)">APPROVED</td><td><span class="badge b-red">FAIL</span></td></tr>
+    <tr><td>6</td><td>Multiple toxins, partial purification</td><td>1</td><td>REJECTED</td><td>REJECTED</td><td><span class="badge b-green">PASS</span></td></tr>
+    <tr><td>7</td><td>Distant purification — strict (k=0)</td><td>0</td><td>REJECTED</td><td>REJECTED</td><td><span class="badge b-green">PASS</span></td></tr>
+    <tr><td>8</td><td style="color:var(--c4)">Distant purification — wide (k=2)</td><td>2</td><td>APPROVED</td><td style="color:var(--c4)">REJECTED</td><td><span class="badge b-red">FAIL</span></td></tr>
+  </tbody>
+</table>
+</div>
+
+<div class="row" style="margin-top:1em">
+  <div class="col">
+    <div class="card center">
+      <div class="metric"><div class="val val-amber" style="font-size:2.5em">75%</div><div class="lbl">Pass Rate (6/8)</div></div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="card" style="font-size:.85em">
+      <h4 style="color:var(--c4);margin-top:0">Why 2 Tests Failed</h4>
+      <p><strong>Test 5:</strong> KG doesn't distinguish between valid and invalid purification methods (water vs cow urine). → <em>Known limitation, future work.</em></p>
+      <p style="margin-bottom:0"><strong>Test 8:</strong> <span class="si">එළකිරෙන්</span> (cow milk variant) not in purification keywords list for this alias. → <em>KG completeness issue.</em></p>
+    </div>
+  </div>
+  <div class="col">
+    <div class="card" style="font-size:.85em">
+      <h4 style="color:var(--c5);margin-top:0">Confusion Matrix</h4>
+      <table class="tbl" style="font-size:.85em;text-align:center">
+        <tr><td></td><td style="font-weight:700">Pred REJECT</td><td style="font-weight:700">Pred APPROVE</td></tr>
+        <tr><td style="font-weight:700">Actual REJECT</td><td style="color:var(--c5)">TP = 3</td><td style="color:var(--c4)">FN = 1</td></tr>
+        <tr><td style="font-weight:700">Actual APPROVE</td><td style="color:var(--c3)">FP = 1</td><td style="color:var(--c5)">TN = 3</td></tr>
+      </table>
+    </div>
+  </div>
+</div>
+</section>
+</section>
+
+<!-- ============================================================ -->
+<!-- SLIDE: CASCADING FAILURE -->
+<!-- ============================================================ -->
+<section>
+<h2>The <span class="gt2">Cascading Failure</span> Mode</h2>
+<p class="sub">Why SBD accuracy is a Patient Safety Requirement, not just an NLP metric</p>
+
+<div class="card" style="border-color:var(--c4);margin-bottom:1.2em">
+  <div class="row">
+    <div class="col" style="flex:2">
+      <h4 style="color:var(--c4);margin-top:0">The Dependency Chain</h4>
+      <p style="font-size:.88em">Upstream segmentation errors <strong>propagate</strong> into downstream safety failures:</p>
+      <ul style="font-size:.85em">
+        <li><strong>Over-Segmentation (False STOP):</strong> Breaks sentence between toxic ingredient and purification → guardrail can't find purification → <span style="color:var(--c3)">False Positive</span> (unnecessary rejection)</li>
+        <li><strong>Under-Segmentation (Missed STOP):</strong> Merges two recipes → purification from Recipe B validates toxic ingredient in Recipe A → <span style="color:var(--c4);font-weight:700">False Negative</span> (dangerous approval)</li>
+      </ul>
+    </div>
+    <div class="col center" style="flex:1">
+      <div style="font-size:4em;line-height:1">⚠️</div>
+      <p style="font-weight:700;color:var(--c4);font-size:1.1em;margin:.5em 0 0">False Negatives<br>Can Be Lethal</p>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="card-sm col" style="text-align:center">
+    <p style="font-size:.75em;color:var(--txt3);margin:0">100% SBD Accuracy</p>
+    <p class="si" style="font-size:.82em;margin:.3em 0">නියඟලා අලයක් ගෙන. ගොම දියරේ ගිල්වා.</p>
+    <span class="badge b-green">APPROVED ✓</span>
+  </div>
+  <div class="card-sm col" style="text-align:center;border-color:var(--c3)">
+    <p style="font-size:.75em;color:var(--txt3);margin:0">~80% SBD (Mild Over-seg)</p>
+    <p class="si" style="font-size:.82em;margin:.3em 0">නියඟලා අලයක්. ගෙන. ගොම දියරේ ගිල්වා.</p>
+    <span class="badge b-green">APPROVED ✓</span>
+    <p style="font-size:.7em;color:var(--txt3);margin:.3em 0">Context window k=1 saves it</p>
+  </div>
+  <div class="card-sm col" style="text-align:center;border-color:var(--c4)">
+    <p style="font-size:.75em;color:var(--txt3);margin:0">~50% SBD (Severe)</p>
+    <p class="si" style="font-size:.82em;margin:.3em 0">නියඟලා. අලයක් ගෙන. හොඳින්. සුද්ද. එය ගොම දියරේ.</p>
+    <span class="badge b-red">REJECTED ✗</span>
+    <p style="font-size:.7em;color:var(--c4);margin:.3em 0">Cascading failure!</p>
+  </div>
+</div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SLIDE: KNOWN LIMITATIONS -->
+<!-- ============================================================ -->
+<section>
+<h2>Known <span class="gt2">Limitations</span></h2>
+<p class="sub">Honest acknowledgment — what we cannot do yet</p>
+
+<div class="grid2">
+  <div class="card-sm">
+    <h4 style="color:var(--c4);margin-top:0;font-size:.95em">1. Weak Supervision Circularity</h4>
+    <p style="font-size:.82em;margin:0;color:var(--txt2)">Training labels use the same suffix rules as CRF features. Mitigated by gold standard evaluation, but the circularity remains a methodological concern.</p>
+  </div>
+  <div class="card-sm">
+    <h4 style="color:var(--c4);margin-top:0;font-size:.95em">2. No Real OCR Integration</h4>
+    <p style="font-size:.82em;margin:0;color:var(--txt2)">Viterbi decoder operates on simulated OCR output with synthetic confidence scores. Real scans may have different error distributions.</p>
+  </div>
+  <div class="card-sm">
+    <h4 style="color:var(--c4);margin-top:0;font-size:.95em">3. No Dosage Modelling</h4>
+    <p style="font-size:.82em;margin:0;color:var(--txt2)">Binary toxicity (High/Low) ignores dose-response (Haber's Rule). Small amounts of toxic ingredients may be safe.</p>
+  </div>
+  <div class="card-sm">
+    <h4 style="color:var(--c4);margin-top:0;font-size:.95em">4. No Negation Handling</h4>
+    <p style="font-size:.82em;margin:0;color:var(--txt2)">"Do NOT use Niyangala" is flagged identically to "Use Niyangala." Pipeline implemented basic negation heuristic but it's incomplete.</p>
+  </div>
+  <div class="card-sm">
+    <h4 style="color:var(--c4);margin-top:0;font-size:.95em">5. KG Completeness</h4>
+    <p style="font-size:.82em;margin:0;color:var(--txt2)">2,100 entities do not cover ALL toxic Ayurvedic ingredients. Entities not in the KG produce silent false negatives.</p>
+  </div>
+  <div class="card-sm">
+    <h4 style="color:var(--c4);margin-top:0;font-size:.95em">6. Single-Annotator Gold Set</h4>
+    <p style="font-size:.82em;margin:0;color:var(--txt2)">500 gold test sentences annotated by a single expert. No inter-annotator agreement score available.</p>
+  </div>
+</div>
+<div class="fn">These limitations are explicitly documented in the thesis (Chapter 10) and form the basis for Phase 2 improvements.</div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SLIDE: CODEBASE ARCHITECTURE -->
+<!-- ============================================================ -->
+<section>
+<h2>Codebase <span class="gt">Architecture</span></h2>
+<p class="sub">Production-ready modular design with single source of truth</p>
+
+<div class="row">
+  <div class="col">
+    <pre style="font-size:.75em"><code>palm_leaf/
+├── src/
+│   ├── config.py          # ★ Single source of truth
+│   ├── pipeline.py        # CRF segmenter + KG guardrail
+│   └── viterbi_decoder.py # Bigram LM + Viterbi
+├── app/
+│   ├── app.py             # Streamlit UI
+│   └── app_demo.py        # Full interactive demo
+├── evaluation/
+│   ├── evaluate.py        # 5-fold CV, ablation, baselines
+│   ├── evaluate_cascading.py
+│   └── evaluate_ocr.py
+├── scripts/
+│   ├── build_bigram_model.py
+│   └── generate_gold.py
+├── notebooks/phase1/
+│   └── Phase1_CRF_Bigram_Pipeline.ipynb
+├── data/  &  docs/  &  requirements.txt</code></pre>
+  </div>
+  <div class="col">
+    <div class="card">
+      <h4 style="color:var(--c1);margin-top:0">config.py — Single Source of Truth</h4>
+      <p style="font-size:.82em;color:var(--txt2)">All suffix lists, hyperparameters, and paths are centralized to eliminate mismatch bugs:</p>
+      <ul style="font-size:.8em">
+        <li><code>CANONICAL_ENDINGS</code> — 13 suffixes used in CRF features</li>
+        <li><code>WEAK_SUPERVISION_EXTRA_ENDINGS</code> — 3 additional suffixes used ONLY in label generation (avoids circularity)</li>
+        <li><code>CRF_PARAMS</code> — L-BFGS, c1=0.1, c2=0.1</li>
+        <li><code>VITERBI_ALPHA/BETA</code> — 0.6 / 0.4</li>
+        <li><code>normalize_sinhala()</code> — NFC Unicode normalization</li>
+      </ul>
+    </div>
+    <div class="card-sm" style="margin-top:.8em">
+      <h4 style="color:var(--c5);margin-top:0;font-size:.9em">Key Design Decision</h4>
+      <p style="font-size:.8em;color:var(--txt2);margin:0"><code>WEAK_SUPERVISION_EXTRA_ENDINGS</code> are deliberately separated from <code>CANONICAL_ENDINGS</code> to partially mitigate the circularity concern.</p>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SLIDE: PHASE 2 PREVIEW -->
+<!-- ============================================================ -->
+<section>
+<h2>Phase 2 <span class="gt">Preview</span></h2>
+<p class="sub">What's coming in the final evaluation</p>
+
+<div class="row">
+  <div class="col">
+    <div class="card">
+      <h4 style="color:var(--c2);margin-top:0">🤖 XLM-RoBERTa Comparison</h4>
+      <p style="font-size:.85em">Fine-tuning <code>xlm-roberta-base</code> (278M params, 1.1GB) for token classification (O/STOP).</p>
+      <table class="tbl" style="font-size:.82em">
+        <thead><tr><th></th><th>CRF</th><th>RoBERTa</th></tr></thead>
+        <tbody>
+          <tr><td>Parameters</td><td style="color:var(--c5)">~thousands</td><td style="color:var(--c4)">278M</td></tr>
+          <tr><td>Model Size</td><td style="color:var(--c5)">~2 MB</td><td style="color:var(--c4)">~1.1 GB</td></tr>
+          <tr><td>GPU Required</td><td style="color:var(--c5)">No</td><td style="color:var(--c4)">Yes</td></tr>
+          <tr><td>Latency</td><td style="color:var(--c5)">~0.05s</td><td style="color:var(--c4)">~1.2s</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="col">
+    <div class="card">
+      <h4 style="color:var(--c3);margin-top:0">📈 Expected Finding</h4>
+      <p style="font-size:.85em">RoBERTa needs <strong style="color:var(--c3)">~4.7× more training data</strong> to match CRF performance:</p>
+      <table class="tbl" style="font-size:.82em">
+        <thead><tr><th>Sentences</th><th>CRF</th><th>RoBERTa</th></tr></thead>
+        <tbody>
+          <tr><td>5,000</td><td style="color:var(--c5)">Reasonable</td><td style="color:var(--c4)">Near-random</td></tr>
+          <tr><td>15,000</td><td style="color:var(--c5)">High</td><td style="color:var(--c4)">Low</td></tr>
+          <tr><td>30,000</td><td style="color:var(--c5)">High</td><td style="color:var(--c3)">Moderate</td></tr>
+          <tr><td>70,000</td><td style="color:var(--c5)">High</td><td style="color:var(--c3)">Approaching CRF</td></tr>
+        </tbody>
+      </table>
+      <p style="font-size:.78em;color:var(--txt3);margin-top:.5em">Crossover at ~50K–70K sentences — validates RQ3</p>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SLIDE: THESIS CONTRIBUTIONS -->
+<!-- ============================================================ -->
+<section>
+<h2>Thesis <span class="gt">Contributions</span></h2>
+
+<div class="card" style="max-width:900px;margin:0 auto">
+  <div style="margin-bottom:1.2em" class="fragment fade-up">
+    <div style="display:flex;gap:1em;align-items:flex-start">
+      <span style="font-size:1.5em;color:var(--c1)">①</span>
+      <div>
+        <p style="margin:0;font-weight:700">Novel Neuro-Symbolic Pipeline</p>
+        <p style="margin:.2em 0 0;font-size:.85em;color:var(--txt2)">First computational system for archaic Sinhala Ayurvedic manuscript processing.</p>
+      </div>
+    </div>
+  </div>
+  <div style="margin-bottom:1.2em" class="fragment fade-up">
+    <div style="display:flex;gap:1em;align-items:flex-start">
+      <span style="font-size:1.5em;color:var(--c2)">②</span>
+      <div>
+        <p style="margin:0;font-weight:700">CRF > Transformer Evidence</p>
+        <p style="margin:.2em 0 0;font-size:.85em;color:var(--txt2)">Feature-engineered CRFs outperform XLM-RoBERTa for SBD in low-resource archaic Sinhala.</p>
+      </div>
+    </div>
+  </div>
+  <div style="margin-bottom:1.2em" class="fragment fade-up">
+    <div style="display:flex;gap:1em;align-items:flex-start">
+      <span style="font-size:1.5em;color:var(--c3)">③</span>
+      <div>
+        <p style="margin:0;font-weight:700">Cascading Safety Failure Formalization</p>
+        <p style="margin:.2em 0 0;font-size:.85em;color:var(--txt2)">First identification that SBD errors propagate into toxicity validation failures in medical NLP.</p>
+      </div>
+    </div>
+  </div>
+  <div style="margin-bottom:1.2em" class="fragment fade-up">
+    <div style="display:flex;gap:1em;align-items:flex-start">
+      <span style="font-size:1.5em;color:var(--c4)">④</span>
+      <div>
+        <p style="margin:0;font-weight:700">Human-in-the-Loop Safety Architecture</p>
+        <p style="margin:.2em 0 0;font-size:.85em;color:var(--txt2)">Dynamic context window with practitioner control — principled safety-vs-context resolution.</p>
+      </div>
+    </div>
+  </div>
+  <div class="fragment fade-up">
+    <div style="display:flex;gap:1em;align-items:flex-start">
+      <span style="font-size:1.5em;color:var(--c5)">⑤</span>
+      <div>
+        <p style="margin:0;font-weight:700">Ayurvedic Toxicology Knowledge Graph</p>
+        <p style="margin:.2em 0 0;font-size:.85em;color:var(--txt2)">2,100 entities — first computationally structured Ayurvedic pharmacovigilance resource for Sinhala.</p>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SLIDE: CONCLUSION -->
+<!-- ============================================================ -->
+<section>
+<div style="text-align:center;padding-top:2em">
+  <h2 style="font-size:2.2em;margin-bottom:.5em"><span class="gt">Conclusion</span></h2>
+  <div class="card" style="max-width:800px;margin:0 auto;text-align:center">
+    <blockquote style="font-size:1.05em;border-color:var(--c5);margin:0">
+      "For specialized, low-resource clinical domains, targeted linguistic feature engineering coupled with deterministic safety protocols remains <strong>superior</strong> to large-scale unconstrained deep learning — especially when patient lives depend on the output."
+    </blockquote>
+  </div>
+
+  <div class="grid3" style="margin-top:2em">
+    <div class="card-sm center">
+      <div class="metric"><div class="val val-cyan" style="font-size:2em">96.7%</div><div class="lbl">SBD Accuracy</div></div>
+    </div>
+    <div class="card-sm center">
+      <div class="metric"><div class="val val-green" style="font-size:2em">~0.05s</div><div class="lbl">Inference Latency</div></div>
+    </div>
+    <div class="card-sm center">
+      <div class="metric"><div class="val val-purple" style="font-size:2em">0 GPU</div><div class="lbl">Required</div></div>
+    </div>
+  </div>
+
+  <p style="color:var(--txt3);font-size:.85em;margin-top:2em;letter-spacing:1px">
+    Phase 1 Complete &nbsp;•&nbsp; Phase 2 (XLM-RoBERTa comparison) in progress for final evaluation
+  </p>
+  <h3 style="color:var(--c1);margin-top:1.5em;font-size:1.5em">Thank You — Questions?</h3>
+</div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SLIDE: REFERENCES -->
+<!-- ============================================================ -->
+<section>
+<h2><span class="gt">References</span></h2>
+<div class="card" style="font-size:.72em;line-height:1.8;max-height:500px;overflow-y:auto">
+<ol>
+  <li>Conneau, A., et al. (2020). "Unsupervised Cross-lingual Representation Learning at Scale." <em>ACL</em>.</li>
+  <li>De Silva, N., &amp; Weerasinghe, R. (2010). "Sinhala Morphological Analyser." <em>LREC</em>.</li>
+  <li>Hedderich, M. A., et al. (2021). "A Survey on NLP in Low-Resource Scenarios." <em>NAACL</em>.</li>
+  <li>Joshi, P., et al. (2020). "The State and Fate of Linguistic Diversity in NLP." <em>ACL</em>.</li>
+  <li>Kiss, T., &amp; Strunk, J. (2006). "Unsupervised Multilingual SBD." <em>Computational Linguistics</em>.</li>
+  <li>Lafferty, J., McCallum, A., &amp; Pereira, F. (2001). "Conditional Random Fields." <em>ICML</em>.</li>
+  <li>Lison, P., et al. (2020). "NER without Labelled Data: Weak Supervision." <em>ACL</em>.</li>
+  <li>Ratner, A., et al. (2017). "Snorkel: Rapid Training Data Creation." <em>VLDB</em>.</li>
+  <li>Read, J., et al. (2012). "Sentence Boundary Detection: A Long Solved Problem?" <em>COLING</em>.</li>
+  <li>Rijhwani, S., et al. (2020). "OCR Post Correction for Endangered Languages." <em>EMNLP</em>.</li>
+  <li>Rotmensch, M., et al. (2017). "Learning a Health KG from EMRs." <em>Scientific Reports</em>.</li>
+  <li>Schweter, S., &amp; Ahmed, M. (2019). "Deep-EOS: Neural SBD." <em>KONVENS</em>.</li>
+  <li>Shao, Y., et al. (2018). "Universal Word Segmentation." <em>TACL</em>.</li>
+  <li>Viterbi, A. J. (1967). "Error Bounds for Convolutional Codes." <em>IEEE Trans. IT</em>.</li>
+  <li>Zhang, Y., et al. (2020). "KGs for Drug-Drug Interaction." <em>Bioinformatics</em>.</li>
+</ol>
+</div>
+</section>
+
+</div><!-- end slides -->
+</div><!-- end reveal -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reveal.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/plugin/math/math.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/plugin/highlight/highlight.min.js"></script>
+<script>
+Reveal.initialize({
+  hash: true,
+  slideNumber: 'c/t',
+  transition: 'slide',
+  transitionSpeed: 'default',
+  backgroundTransition: 'fade',
+  center: false,
+  width: 1100,
+  height: 700,
+  margin: 0.02,
+  minScale: 0.2,
+  maxScale: 2.0,
+  plugins: [ RevealMath.KaTeX, RevealHighlight ],
+  keyboard: true,
+  overview: true,
+  touch: true,
+});
+</script>
+</body>
+</html>

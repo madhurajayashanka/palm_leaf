@@ -1,8 +1,8 @@
 {
   "window_0": {
-    "accuracy": 0.75,
-    "correct": 3,
-    "total": 4,
+    "accuracy": 0.8,
+    "correct": 4,
+    "total": 5,
     "details": [
       {
         "text": "වාත රෝග සඳහා නියඟලා අලයක් ගෙන. හොඳින් ගොම දියරේ දි...",
@@ -27,13 +27,19 @@
         "expected": "REJECTED",
         "actual": "REJECTED",
         "correct": true
+      },
+      {
+        "text": "වාත රෝග සඳහා නියඟලා අලයක් ගෙන. එය ගොම දියරේ ගිල්වා...",
+        "expected": "REJECTED",
+        "actual": "REJECTED",
+        "correct": true
       }
     ]
   },
   "window_1": {
     "accuracy": 1.0,
-    "correct": 4,
-    "total": 4,
+    "correct": 5,
+    "total": 5,
     "details": [
       {
         "text": "වාත රෝග සඳහා නියඟලා අලයක් ගෙන. හොඳින් ගොම දියරේ දි...",
@@ -55,6 +61,12 @@
       },
       {
         "text": "නියඟලා ගොම දියරේ ශෝධනය කර. ජයපාල බීජ කුඩු කරන්න....",
+        "expected": "REJECTED",
+        "actual": "REJECTED",
+        "correct": true
+      },
+      {
+        "text": "වාත රෝග සඳහා නියඟලා අලයක් ගෙන. එය ගොම දියරේ ගිල්වා...",
         "expected": "REJECTED",
         "actual": "REJECTED",
         "correct": true
@@ -63,8 +75,8 @@
   },
   "window_2": {
     "accuracy": 1.0,
-    "correct": 4,
-    "total": 4,
+    "correct": 5,
+    "total": 5,
     "details": [
       {
         "text": "වාත රෝග සඳහා නියඟලා අලයක් ගෙන. හොඳින් ගොම දියරේ දි...",
@@ -86,6 +98,12 @@
       },
       {
         "text": "නියඟලා ගොම දියරේ ශෝධනය කර. ජයපාල බීජ කුඩු කරන්න....",
+        "expected": "REJECTED",
+        "actual": "REJECTED",
+        "correct": true
+      },
+      {
+        "text": "වාත රෝග සඳහා නියඟලා අලයක් ගෙන. එය ගොම දියරේ ගිල්වා...",
         "expected": "REJECTED",
         "actual": "REJECTED",
         "correct": true
@@ -94,8 +112,8 @@
   },
   "window_3": {
     "accuracy": 1.0,
-    "correct": 4,
-    "total": 4,
+    "correct": 5,
+    "total": 5,
     "details": [
       {
         "text": "වාත රෝග සඳහා නියඟලා අලයක් ගෙන. හොඳින් ගොම දියරේ දි...",
@@ -117,6 +135,12 @@
       },
       {
         "text": "නියඟලා ගොම දියරේ ශෝධනය කර. ජයපාල බීජ කුඩු කරන්න....",
+        "expected": "REJECTED",
+        "actual": "REJECTED",
+        "correct": true
+      },
+      {
+        "text": "වාත රෝග සඳහා නියඟලා අලයක් ගෙන. එය ගොම දියරේ ගිල්වා...",
         "expected": "REJECTED",
         "actual": "REJECTED",
         "correct": true

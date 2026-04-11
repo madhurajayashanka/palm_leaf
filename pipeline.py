@@ -145,11 +145,21 @@ def analyze_safety(segmented_text, kg, window_size=None):
             
             has_shodhana = any(keyword in context_block for keyword in data["shodhana_keywords"])
             
-            if has_shodhana:
+            # Negation heuristic: if negation words are present, consider it as rejected
+            negation_words = ["නොමැති", "එපා", "නොකර", "නොකරන්න"]
+            has_negation = any(neg in context_block for neg in negation_words)
+            
+            if has_shodhana and not has_negation:
                 report_details.append({
                     "term": term, "sentence_id": i+1, "status": "PASS", 
                     "message": f"✅ '{term}' හඳුනාගන්නා ලදී. ශෝධන ක්‍රමවේදය අඩංගු බැවින් ආරක්ෂිතයි."
                 })
+            elif has_shodhana and has_negation:
+                report_details.append({
+                    "term": term, "sentence_id": i+1, "status": "ALERT", 
+                    "message": f"🔴 අනතුරු ඇඟවීමයි! '{term}' සඳහා ශෝධන උපදෙස් ප්‍රතික්ෂේප කර ඇත (නොමැති/එපා)."
+                })
+                issues_found += 1
             else:
                 report_details.append({
                     "term": term, "sentence_id": i+1, "status": "ALERT", 

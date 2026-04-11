@@ -62,10 +62,8 @@ def viterbi_decode(ocr_input, lm_probabilities, alpha=None, beta=None, smoothing
                 if prev_word in lm_probabilities and current_word in lm_probabilities[prev_word]:
                     lm_prob = lm_probabilities[prev_word][current_word]
                 
-                # Log-space scoring: log(prev) + log(alpha*OCR + beta*LM)
-                combined = alpha * ocr_conf + beta * lm_prob
-                combined = max(combined, 1e-10)  # Floor
-                log_score = V[t-1][prev_word]["score"] + math.log(combined)
+                # Log-linear interpolation
+                log_score = V[t-1][prev_word]["score"] + alpha * math.log(ocr_conf) + beta * math.log(lm_prob)
                 
                 if log_score > max_log_score:
                     max_log_score = log_score
@@ -95,20 +93,6 @@ def viterbi_decode(ocr_input, lm_probabilities, alpha=None, beta=None, smoothing
 
 # Sample OCR input array (simulated scanner output)
 ocr_data = [
-  { "candidates": [ { "word": "සහ", "confidence": 0.98 }, { "word": "මහා", "confidence": 0.12 }, { "word": "ගහ", "confidence": 0.05 } ] },
-  { "candidates": [ { "word": "සමේ", "confidence": 0.95 }, { "word": "ගමේ", "confidence": 0.15 }, { "word": "කමේ", "confidence": 0.08 } ] },
-  { "candidates": [ { "word": "රෝග", "confidence": 0.92 }, { "word": "බෝග", "confidence": 0.18 }, { "word": "යෝග", "confidence": 0.04 } ] },
-  { "candidates": [ { "word": "ඇති", "confidence": 0.96 }, { "word": "නැති", "confidence": 0.10 }, { "word": "අති", "confidence": 0.05 } ] },
-  { "candidates": [ { "word": "තැන", "confidence": 0.009 }, { "word": "බීම", "confidence": 0.22 }, { "word": "කීම", "confidence": 0.11 } ] }
-]
-
-if __name__ == "__main__":
-    lm_model = load_language_model('bigram_probabilities.json')
-
-    if lm_model:
-        print("Running Viterbi Decoding (log-space)...")
-        best_sentence = viterbi_decode(ocr_data, lm_model)
-        print(f"Final Decoded Ayurvedic Text: >> {best_sentence}"
   { "candidates": [ { "word": "සහ", "confidence": 0.98 }, { "word": "මහා", "confidence": 0.12 }, { "word": "ගහ", "confidence": 0.05 } ] },
   { "candidates": [ { "word": "සමේ", "confidence": 0.95 }, { "word": "ගමේ", "confidence": 0.15 }, { "word": "කමේ", "confidence": 0.08 } ] },
   { "candidates": [ { "word": "රෝග", "confidence": 0.92 }, { "word": "බෝග", "confidence": 0.18 }, { "word": "යෝග", "confidence": 0.04 } ] },

@@ -52,85 +52,91 @@ with tab1:
         value="වාත රෝග සඳහා නියඟලා අලයක් ගෙන හොඳින් සුද්ද කරගන්න ඉන්පසු එය ගොම දියරේ දින තුනක් ගිල්වා තබන්න පසුව වේලා කුඩු කරගන්න"
     )
 
-    if st.button("🔍 වට්ටෝරුව විශ්ලේෂණය කරන්න (Analyze)", type="primary", use_container_width=True):
-        if user_input.strip() == "":
-            st.warning("කරුණාකර පෙළක් ඇතුළත් කරන්න.")
+    if user_input.strip() == "":
+        st.warning("කරුණාකර පෙළක් ඇතුළත් කරන්න.")
+    else:
+        # --- Stage 1B: Segmentation ---
+        st.markdown("### 🧩 Stage 1B: CRF Sentence Segmentation")
+        t_start = time.time()
+        segmented_output = segment_text(user_input, threshold=threshold)
+        t_seg = time.time() - t_start
+
+        if segmented_output.startswith("Error:"):
+            st.error(segmented_output)
+            st.info("💡 **Fix:** Run the Phase 1 notebook to train and export `ayurvedic_segmenter.pkl`")
         else:
-            # --- Stage 1B: Segmentation ---
-            st.markdown("### 🧩 Stage 1B: CRF Sentence Segmentation")
-            t_start = time.time()
-            segmented_output = segment_text(user_input, threshold=threshold)
-            t_seg = time.time() - t_start
+            st.caption(f"⏱️ Segmentation latency: {t_seg*1000:.1f} ms")
+            
+            st.info("💡 **Human-in-the-Loop:** You can manually edit the sentence boundaries (periods) below before the Safety Guardrail runs. The analysis will instantly update.")
+            
+            user_edited_segmentation = st.text_area(
+                "AI Output (මානව සංස්කරණය සඳහා):",
+                value=segmented_output,
+                height=100
+            )
 
-            if segmented_output.startswith("Error:"):
-                st.error(segmented_output)
-                st.info("💡 **Fix:** Run the Phase 1 notebook to train and export `ayurvedic_segmenter.pkl`")
-            else:
-                st.info(segmented_output)
-                st.caption(f"⏱️ Segmentation latency: {t_seg*1000:.1f} ms")
+            # Count segments
+            sentences = [s.strip() for s in user_edited_segmentation.split('.') if s.strip()]
+            st.write(f"**Sentences detected:** {len(sentences)}")
 
-                # Count segments
-                sentences = [s.strip() for s in segmented_output.split('.') if s.strip()]
-                st.write(f"**Sentences detected:** {len(sentences)}")
+            # --- Stage 1C: Safety Guardrail ---
+            st.markdown("### 🛡️ Stage 1C: Knowledge Graph Safety Guardrail")
 
-                # --- Stage 1C: Safety Guardrail ---
-                st.markdown("### 🛡️ Stage 1C: Knowledge Graph Safety Guardrail")
+            if kg:
+                t_start = time.time()
+                report = analyze_safety(user_edited_segmentation, kg, window_size=window_size)
+                t_safety = time.time() - t_start
 
-                if kg:
-                    t_start = time.time()
-                    report = analyze_safety(segmented_output, kg, window_size=window_size)
-                    t_safety = time.time() - t_start
-
-                    if report["final_status"] == "APPROVED":
-                        st.success(f"🟢 **අනුමතයි (APPROVED)** — Issues: {report['issues_count']}")
-                    else:
-                        st.error(f"🛑 **ප්‍රතික්ෂේපිතයි (REJECTED)** — Issues: {report['issues_count']}")
-
-                    st.caption(f"⏱️ Safety check latency: {t_safety*1000:.1f} ms")
-
-                    # Detailed report
-                    st.write("#### 📋 Detailed Analysis:")
-                    if not report["details"]:
-                        st.write("කිසිදු විෂ සහිත ඖෂධයක් හමු නොවීය.")
-                    else:
-                        for item in report["details"]:
-                            if item["status"] == "PASS":
-                                st.success(item["message"])
-                            else:
-                                st.error(item["message"])
-
-                    # --- Cascading Failure Demo ---
-                    st.markdown("---")
-                    st.markdown("### ⚠️ Cascading Failure Demonstration")
-                    st.caption(
-                        "Adjusting the segmentation threshold changes where sentence breaks land, "
-                        "which can cause the safety guardrail to give different verdicts for the same input."
-                    )
-
-                    col1, col2 = st.columns(2)
-                    with col1:
-                        st.write("**Strict segmentation (θ=0.10)**")
-                        seg_strict = segment_text(user_input, threshold=0.10)
-                        if not seg_strict.startswith("Error:"):
-                            st.code(seg_strict, language=None)
-                            r = analyze_safety(seg_strict, kg, window_size=window_size)
-                            if r["final_status"] == "APPROVED":
-                                st.success(f"APPROVED ({r['issues_count']} issues)")
-                            else:
-                                st.error(f"REJECTED ({r['issues_count']} issues)")
-
-                    with col2:
-                        st.write("**Relaxed segmentation (θ=0.30)**")
-                        seg_relaxed = segment_text(user_input, threshold=0.30)
-                        if not seg_relaxed.startswith("Error:"):
-                            st.code(seg_relaxed, language=None)
-                            r = analyze_safety(seg_relaxed, kg, window_size=window_size)
-                            if r["final_status"] == "APPROVED":
-                                st.success(f"APPROVED ({r['issues_count']} issues)")
-                            else:
-                                st.error(f"REJECTED ({r['issues_count']} issues)")
+                if report["final_status"] == "APPROVED":
+                    st.success(f"🟢 **අනුමතයි (APPROVED)** — Issues: {report['issues_count']}")
                 else:
-                    st.error("Knowledge Graph not loaded.")
+                    st.error(f"🛑 **ප්‍රතික්ෂේපිතයි (REJECTED)** — Issues: {report['issues_count']}")
+
+                st.caption(f"⏱️ Safety check latency: {t_safety*1000:.1f} ms")
+
+                # Detailed report
+                st.write("#### 📋 Detailed Analysis:")
+                if not report["details"]:
+                    st.write("කිසිදු විෂ සහිත ඖෂධයක් හමු නොවීය.")
+                else:
+                    for item in report["details"]:
+                        if item["status"] == "PASS":
+                            st.success(item["message"])
+                        else:
+                            st.error(item["message"])
+
+                # --- Cascading Failure Demo ---
+                st.markdown("---")
+                st.markdown("### ⚠️ Cascading Failure Demonstration")
+                st.caption(
+                    "Adjusting the segmentation threshold changes where sentence breaks land, "
+                    "which can cause the safety guardrail to give different verdicts for the same input."
+                )
+
+                col1, col2 = st.columns(2)
+                with col1:
+                    st.write("**Strict segmentation (θ=0.10)**")
+                    seg_strict = segment_text(user_input, threshold=0.10)
+                    if not seg_strict.startswith("Error:"):
+                        st.code(seg_strict, language=None)
+                        r = analyze_safety(seg_strict, kg, window_size=window_size)
+                        if r["final_status"] == "APPROVED":
+                            st.success(f"APPROVED ({r['issues_count']} issues)")
+                        else:
+                            st.error(f"REJECTED ({r['issues_count']} issues)")
+
+                with col2:
+                    st.write("**Relaxed segmentation (θ=0.30)**")
+                    seg_relaxed = segment_text(user_input, threshold=0.30)
+                    if not seg_relaxed.startswith("Error:"):
+                        st.code(seg_relaxed, language=None)
+                        r = analyze_safety(seg_relaxed, kg, window_size=window_size)
+                        if r["final_status"] == "APPROVED":
+                            st.success(f"APPROVED ({r['issues_count']} issues)")
+                        else:
+                            st.error(f"REJECTED ({r['issues_count']} issues)")
+            else:
+                st.error("Knowledge Graph not loaded.")
 
 # ==========================================
 # TAB 2: OCR CORRECTION DEMO

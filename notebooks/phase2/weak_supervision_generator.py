@@ -2,9 +2,10 @@ import csv
 import os
 import sys
 
-# Allow imports from src directory
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', '..', 'src'))
-from config import WEAK_SUPERVISION_ENDINGS, normalize_sinhala
+# Allow imports from src directory — works both locally and on Colab
+_project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
+sys.path.insert(0, os.path.join(_project_root, 'src'))
+from config import WEAK_SUPERVISION_ENDINGS, normalize_sinhala, DATA_DIR
 
 # ==============================================================================
 # WEAK SUPERVISION SCRIPT
@@ -14,9 +15,9 @@ from config import WEAK_SUPERVISION_ENDINGS, normalize_sinhala
 #          inject 'STOP' (boundary) or 'O' (continue) tags without human labeling.
 # ==============================================================================
 
-# Input and Output Paths
-INPUT_CORPUS = os.path.join(os.path.dirname(__file__), "..", "train.txt")
-OUTPUT_TSV = "train_labeled.tsv"
+# Input and Output Paths — use canonical data/ directory
+INPUT_CORPUS = os.path.join(DATA_DIR, "cleaned_corpus.txt")
+OUTPUT_TSV = os.path.join(DATA_DIR, "train_labeled.tsv")
 
 # Endings imported from config.py (canonical source of truth)
 ENDINGS = WEAK_SUPERVISION_ENDINGS

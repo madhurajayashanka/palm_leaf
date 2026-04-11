@@ -4,7 +4,7 @@ import os
 from config import CANONICAL_ENDINGS, normalize_sinhala, CRF_THRESHOLD_DEFAULT, SAFETY_DEFAULT_WINDOW, DATA_DIR, MODELS_DIR
 
 # ==========================================
-# PHASE 2: SEGMENTER (වාක්‍ය ඛණ්ඩනය)
+# PHASE 2: SEGMENTER
 # ==========================================
 def word2features(sent, i):
     word = sent[i][0]
@@ -75,7 +75,7 @@ def segment_text(text, model_path=os.path.join(MODELS_DIR, "ayurvedic_segmenter.
 
 
 # ==========================================
-# PHASE 3: KNOWLEDGE GRAPH (ආරක්ෂක පද්ධතිය)
+# PHASE 3: KNOWLEDGE GRAPH
 # ==========================================
 def load_knowledge_graph(csv_filepath=os.path.join(DATA_DIR, "ayurvedic_ingredients_full.csv")):
     kg = {}

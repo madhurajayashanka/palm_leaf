@@ -1,7 +1,7 @@
 import joblib
 import csv
 import os
-from config import CANONICAL_ENDINGS, normalize_sinhala, CRF_THRESHOLD_DEFAULT, SAFETY_DEFAULT_WINDOW
+from config import CANONICAL_ENDINGS, normalize_sinhala, CRF_THRESHOLD_DEFAULT, SAFETY_DEFAULT_WINDOW, DATA_DIR, MODELS_DIR
 
 # ==========================================
 # PHASE 2: SEGMENTER (වාක්‍ය ඛණ්ඩනය)
@@ -37,7 +37,7 @@ def word2features(sent, i):
 def sent2features(sent):
     return [word2features(sent, i) for i in range(len(sent))]
 
-def segment_text(text, model_path="ayurvedic_segmenter.pkl", threshold=None):
+def segment_text(text, model_path=os.path.join(MODELS_DIR, "ayurvedic_segmenter.pkl"), threshold=None):
     if threshold is None:
         threshold = CRF_THRESHOLD_DEFAULT
 
@@ -77,7 +77,7 @@ def segment_text(text, model_path="ayurvedic_segmenter.pkl", threshold=None):
 # ==========================================
 # PHASE 3: KNOWLEDGE GRAPH (ආරක්ෂක පද්ධතිය)
 # ==========================================
-def load_knowledge_graph(csv_filepath="ayurvedic_ingredients_full.csv"):
+def load_knowledge_graph(csv_filepath=os.path.join(DATA_DIR, "ayurvedic_ingredients_full.csv")):
     kg = {}
     if not os.path.isfile(csv_filepath):
         return None

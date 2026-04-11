@@ -11,10 +11,13 @@ Implements:
   - Safety guardrail analysis (window_size sweep)
   - Statistical significance tests (McNemar, bootstrap CI)
   - Latency benchmarking
-  - All results saved to eval_results/
+  - All results saved to evaluation/results/
 """
 
+import sys
 import os
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'src'))
+
 import csv
 import json
 import time
@@ -26,7 +29,7 @@ from collections import Counter, defaultdict
 from config import (
     CANONICAL_ENDINGS, WEAK_SUPERVISION_ENDINGS,
     CRF_PARAMS, CRF_CHUNK_SIZE, CRF_TRAIN_SPLIT, CRF_THRESHOLD_DEFAULT,
-    normalize_sinhala
+    normalize_sinhala, DATA_DIR, MODELS_DIR, PROJECT_ROOT
 )
 
 try:
@@ -37,7 +40,7 @@ except ImportError:
     HAS_CRF = False
     print("WARNING: sklearn-crfsuite not installed. CRF evaluation disabled.")
 
-RESULTS_DIR = "eval_results"
+RESULTS_DIR = os.path.join(PROJECT_ROOT, "evaluation", "results")
 os.makedirs(RESULTS_DIR, exist_ok=True)
 
 
@@ -45,7 +48,7 @@ os.makedirs(RESULTS_DIR, exist_ok=True)
 # DATA LOADING
 # ==============================================================================
 
-def load_labeled_data(filepath="train_labeled.tsv"):
+def load_labeled_data(filepath=os.path.join(DATA_DIR, "train_labeled.tsv")):
     """Load CoNLL-style word\\ttag file into list of sequences."""
     sequences = []
     current = []
@@ -289,7 +292,7 @@ def rule_only_baseline(sequences):
 # MAIN EVALUATION
 # ==============================================================================
 
-def run_full_evaluation(data_path="train_labeled.tsv", max_sentences=None):
+def run_full_evaluation(data_path=os.path.join(DATA_DIR, "train_labeled.tsv"), max_sentences=None):
     """Run the complete evaluation pipeline."""
     
     if not HAS_CRF:
@@ -317,8 +320,8 @@ def run_full_evaluation(data_path="train_labeled.tsv", max_sentences=None):
     split_idx = int(len(sequences) * CRF_TRAIN_SPLIT)
     train_seqs = sequences[:split_idx]
     
-    if os.path.exists("gold_test.tsv"):
-        test_seqs = load_labeled_data("gold_test.tsv")
+    if os.path.exists(os.path.join(DATA_DIR, "gold_test.tsv")):
+        test_seqs = load_labeled_data(os.path.join(DATA_DIR, "gold_test.tsv"))
         print(f"  * Using gold_test.tsv for testing ({len(test_seqs)} seqs).")
     else:
         test_seqs = sequences[split_idx:]
@@ -340,7 +343,7 @@ def run_full_evaluation(data_path="train_labeled.tsv", max_sentences=None):
     print(f"  Training time: {train_time:.2f}s")
     
     # Save model
-    model_path = "ayurvedic_segmenter.pkl"
+    model_path = os.path.join(MODELS_DIR, "ayurvedic_segmenter.pkl")
     joblib.dump(crf_full, model_path)
     print(f"  Model saved to {model_path}")
     
@@ -525,7 +528,7 @@ def evaluate_safety_guardrail():
     """Evaluate safety guardrail across window sizes with known test cases."""
     from pipeline import load_knowledge_graph, analyze_safety
     
-    kg = load_knowledge_graph("ayurvedic_ingredients_full.csv")
+    kg = load_knowledge_graph(os.path.join(DATA_DIR, "ayurvedic_ingredients_full.csv"))
     if not kg:
         print("ERROR: Cannot load knowledge graph.")
         return
@@ -599,7 +602,7 @@ if __name__ == "__main__":
     print("Ayurvedic NLP Pipeline — Full Evaluation\n")
     
     # Check for data
-    data_file = "train_labeled.tsv"
+    data_file = os.path.join(DATA_DIR, "train_labeled.tsv")
     if not os.path.exists(data_file):
         print(f"ERROR: {data_file} not found. Run weak_supervision_generator.py first.")
         exit(1)
@@ -610,4 +613,4 @@ if __name__ == "__main__":
     # Run safety evaluation
     safety_results = evaluate_safety_guardrail()
     
-    print("\n✅ Evaluation complete. Check eval_results/ for all outputs.")
+    print("\n✅ Evaluation complete. Check evaluation/results/ for all outputs.")

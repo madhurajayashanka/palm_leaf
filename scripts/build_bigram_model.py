@@ -1,6 +1,10 @@
+import sys
+import os
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'src'))
+
 import json
 from collections import defaultdict, Counter
-from config import normalize_sinhala
+from config import normalize_sinhala, DATA_DIR
 
 def build_bigram_model(file_path):
     print(f"Reading {file_path}...")
@@ -50,8 +54,8 @@ def build_bigram_model(file_path):
     return probabilities
 
 # --- Execution ---
-input_corpus = 'cleaned_corpus.txt' # Change this if your file is named differently
-output_json = 'bigram_probabilities.json'
+input_corpus = os.path.join(DATA_DIR, 'cleaned_corpus.txt')
+output_json = os.path.join(DATA_DIR, 'bigram_probabilities.json')
 
 print("Starting Language Model Training...")
 model = build_bigram_model(input_corpus)

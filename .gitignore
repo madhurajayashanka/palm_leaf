@@ -1,2 +1,6 @@
-__pycache__
+__pycache__/
+*.pyc
 .DS_Store
+*.pkl
+!notebooks/phase1/ayurvedic_segmenter.pkl
+!notebooks/phase2/*.pkl

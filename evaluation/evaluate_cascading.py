@@ -1,7 +1,11 @@
+import sys
+import os
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'src'))
+
 from pipeline import load_knowledge_graph, analyze_safety
 
 def run_cascading_failure_test():
-    kg = load_knowledge_graph("ayurvedic_ingredients_full.csv")
+    kg = load_knowledge_graph()
 
     print("=== Cascading Failure Error Propagation ===")
     print("Hypothesis: Incorrect sentence boundary detection (SBD) leads to Safety Guardrail failures.\n")

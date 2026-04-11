@@ -1,5 +1,10 @@
+import sys
+import os
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'src'))
+
 import random
 from viterbi_decoder import viterbi_decode, load_language_model
+from config import DATA_DIR
 
 def simulate_ocr_noise(text, error_rate=0.15):
     # visually similar Sinhala characters
@@ -39,9 +44,9 @@ def simulate_ocr_noise(text, error_rate=0.15):
     return noisy_words, actual_errors, total_chars
 
 def test_ocr_correction():
-    lm = load_language_model('bigram_probabilities.json')
+    lm = load_language_model(os.path.join(DATA_DIR, 'bigram_probabilities.json'))
     if not lm:
-        print("Language model missing. Run testing.py first.")
+        print("Language model missing. Run scripts/build_bigram_model.py first.")
         return
         
     print("=== OCR Post-Correction Evaluation (Viterbi Decoder) ===")

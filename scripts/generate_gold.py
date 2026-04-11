@@ -1,7 +1,9 @@
 import random
 import os
 
-def create_gold_test(input_file="cleaned_corpus.txt", output_file="gold_test.tsv", num_sentences=500):
+DATA_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'data')
+
+def create_gold_test(input_file=os.path.join(DATA_DIR, "cleaned_corpus.txt"), output_file=os.path.join(DATA_DIR, "gold_test.tsv"), num_sentences=500):
     if not os.path.exists(input_file):
         print(f"Error: {input_file} not found.")
         return

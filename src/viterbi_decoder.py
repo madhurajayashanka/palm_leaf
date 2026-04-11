@@ -1,6 +1,7 @@
 import json
 import math
-from config import VITERBI_ALPHA, VITERBI_BETA, VITERBI_SMOOTHING, normalize_sinhala
+from config import VITERBI_ALPHA, VITERBI_BETA, VITERBI_SMOOTHING, normalize_sinhala, DATA_DIR
+import os
 
 def load_language_model(file_path):
     """Loads the trained bigram probabilities."""
@@ -101,7 +102,7 @@ ocr_data = [
 ]
 
 if __name__ == "__main__":
-    lm_model = load_language_model('bigram_probabilities.json')
+    lm_model = load_language_model(os.path.join(DATA_DIR, 'bigram_probabilities.json'))
 
     if lm_model:
         print("Running Viterbi Decoding (log-space)...")

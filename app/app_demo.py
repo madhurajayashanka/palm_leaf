@@ -1,8 +1,13 @@
+import sys
+import os
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'src'))
+
 import streamlit as st
 import time
 import json
 from pipeline import segment_text, load_knowledge_graph, analyze_safety
 from viterbi_decoder import viterbi_decode, load_language_model
+from config import DATA_DIR
 
 # --- Page Configuration ---
 st.set_page_config(page_title="Ayurvedic AI Pipeline", page_icon="🌿", layout="wide")
@@ -15,11 +20,11 @@ st.markdown("---")
 # --- Load Resources ---
 @st.cache_data
 def get_kg():
-    return load_knowledge_graph("ayurvedic_ingredients_full.csv")
+    return load_knowledge_graph()
 
 @st.cache_data
 def get_lm():
-    return load_language_model("bigram_probabilities.json")
+    return load_language_model(os.path.join(DATA_DIR, "bigram_probabilities.json"))
 
 kg = get_kg()
 lm = get_lm()
@@ -189,7 +194,7 @@ with tab2:
             else:
                 st.caption("In this case, greedy and Viterbi agree.")
         else:
-            st.error("Language model not loaded. Ensure `bigram_probabilities.json` exists.")
+            st.error("Language model not loaded. Ensure bigram_probabilities.json exists in data/.")
 
     st.markdown("---")
     st.markdown("#### α/β Sensitivity Analysis")

@@ -1,4 +1,8 @@
 
+import sys
+import os
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'src'))
+
 import streamlit as st
 from pipeline import segment_text, load_knowledge_graph, analyze_safety
 
@@ -13,7 +17,7 @@ st.markdown("---")
 # --- Load Knowledge Graph ---
 @st.cache_data
 def get_kg():
-    return load_knowledge_graph("ayurvedic_ingredients_full.csv")
+    return load_knowledge_graph()
 
 kg = get_kg()
 

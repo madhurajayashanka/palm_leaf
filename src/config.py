@@ -3,7 +3,15 @@ Canonical configuration for the Ayurvedic NLP Pipeline.
 All suffix lists, hyperparameters, and shared constants are defined here
 to eliminate mismatch bugs across training, inference, and weak supervision.
 """
+import os
 import unicodedata
+
+# ==============================================================================
+# PROJECT PATHS
+# ==============================================================================
+PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+DATA_DIR = os.path.join(PROJECT_ROOT, 'data')
+MODELS_DIR = os.path.join(DATA_DIR, 'models')
 
 # ==============================================================================
 # CANONICAL MORPHOLOGICAL SUFFIX LIST

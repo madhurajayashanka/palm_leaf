@@ -2,8 +2,8 @@ import csv
 import os
 import sys
 
-# Allow imports from parent directory
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
+# Allow imports from src directory
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', '..', 'src'))
 from config import WEAK_SUPERVISION_ENDINGS, normalize_sinhala
 
 # ==============================================================================

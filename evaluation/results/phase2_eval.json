@@ -1,0 +1,333 @@
+{
+  "config": {
+    "threshold": 0.5,
+    "include_crf": true,
+    "include_baseline_roberta": false,
+    "include_dapt_roberta": false,
+    "include_dapt_morph": false
+  },
+  "n_sequences": 315,
+  "n_safety_scenarios": 70,
+  "sbd": {
+    "rule_only": {
+      "model": "rule_only",
+      "threshold": 0.5,
+      "overall": {
+        "precision_stop": 0.6585662211421628,
+        "recall_stop": 0.464041095890411,
+        "f1_stop": 0.5444500251130084,
+        "accuracy": 0.930705172282069,
+        "confusion": {
+          "tp": 542,
+          "fp": 281,
+          "tn": 11640,
+          "fn": 626
+        },
+        "f1_stop_ci95": [
+          0.5170940170940171,
+          0.5708418891170431
+        ]
+      },
+      "by_bucket": {
+        "EASY": {
+          "precision_stop": 0.6821705426356589,
+          "recall_stop": 0.44,
+          "f1_stop": 0.5349544072948328,
+          "accuracy": 0.9318181818181818,
+          "confusion": {
+            "tp": 88,
+            "fp": 41,
+            "tn": 2003,
+            "fn": 112
+          }
+        },
+        "MED": {
+          "precision_stop": 0.6472868217054264,
+          "recall_stop": 0.4717514124293785,
+          "f1_stop": 0.5457516339869282,
+          "accuracy": 0.9299924452279023,
+          "confusion": {
+            "tp": 167,
+            "fp": 91,
+            "tn": 3526,
+            "fn": 187
+          }
+        },
+        "HARD": {
+          "precision_stop": 0.6517647058823529,
+          "recall_stop": 0.46243739565943237,
+          "f1_stop": 0.5410156249999999,
+          "accuracy": 0.929745889387145,
+          "confusion": {
+            "tp": 277,
+            "fp": 148,
+            "tn": 5943,
+            "fn": 322
+          }
+        },
+        "EXPERT": {
+          "precision_stop": 0.9090909090909091,
+          "recall_stop": 0.6666666666666666,
+          "f1_stop": 0.7692307692307692,
+          "accuracy": 0.967391304347826,
+          "confusion": {
+            "tp": 10,
+            "fp": 1,
+            "tn": 168,
+            "fn": 5
+          }
+        }
+      },
+      "latency_ms": {
+        "mean": 0.24477735795598063,
+        "p95": 0.46745798317715526
+      }
+    },
+    "crf": {
+      "model": "crf",
+      "threshold": 0.5,
+      "overall": {
+        "precision_stop": 1.0,
+        "recall_stop": 0.9888698630136986,
+        "f1_stop": 0.9944037882049075,
+        "accuracy": 0.9990067996027199,
+        "confusion": {
+          "tp": 1155,
+          "fp": 0,
+          "tn": 11921,
+          "fn": 13
+        },
+        "f1_stop_ci95": [
+          0.991075223119422,
+          0.9973357015985791
+        ]
+      },
+      "by_bucket": {
+        "EASY": {
+          "precision_stop": 1.0,
+          "recall_stop": 1.0,
+          "f1_stop": 1.0,
+          "accuracy": 1.0,
+          "confusion": {
+            "tp": 200,
+            "fp": 0,
+            "tn": 2044,
+            "fn": 0
+          }
+        },
+        "MED": {
+          "precision_stop": 1.0,
+          "recall_stop": 1.0,
+          "f1_stop": 1.0,
+          "accuracy": 1.0,
+          "confusion": {
+            "tp": 354,
+            "fp": 0,
+            "tn": 3617,
+            "fn": 0
+          }
+        },
+        "HARD": {
+          "precision_stop": 1.0,
+          "recall_stop": 1.0,
+          "f1_stop": 1.0,
+          "accuracy": 1.0,
+          "confusion": {
+            "tp": 599,
+            "fp": 0,
+            "tn": 6091,
+            "fn": 0
+          }
+        },
+        "EXPERT": {
+          "precision_stop": 1.0,
+          "recall_stop": 0.13333333333333333,
+          "f1_stop": 0.23529411764705882,
+          "accuracy": 0.9293478260869565,
+          "confusion": {
+            "tp": 2,
+            "fp": 0,
+            "tn": 169,
+            "fn": 13
+          }
+        }
+      },
+      "latency_ms": {
+        "mean": 0.3340454914400147,
+        "p95": 0.6094579875934869
+      }
+    }
+  },
+  "mcnemar_vs_rule_only": {
+    "crf": {
+      "b": 8,
+      "c": 902,
+      "chi2": 876.3175824175825,
+      "p": 1.3809243735137359e-192
+    }
+  },
+  "safety": {
+    "rule_only": {
+      "model": "rule_only",
+      "overall_accuracy_by_window": {
+        "0": 1.0,
+        "1": 1.0,
+        "2": 1.0,
+        "3": 0.9
+      },
+      "hitl_count_by_window": {},
+      "per_kind_by_window": {
+        "SAFE_HERB": {
+          "0": 1.0,
+          "1": 1.0,
+          "2": 1.0,
+          "3": 1.0
+        },
+        "TOXIC_PURIFIED": {
+          "0": 1.0,
+          "1": 1.0,
+          "2": 1.0,
+          "3": 1.0
+        },
+        "TOXIC_ADJACENT": {
+          "0": 1.0,
+          "1": 1.0,
+          "2": 1.0,
+          "3": 1.0
+        },
+        "TOXIC_DISTANT": {
+          "0": 1.0,
+          "1": 1.0,
+          "2": 1.0,
+          "3": 0.0
+        },
+        "TOXIC_UNPURIFIED": {
+          "0": 1.0,
+          "1": 1.0,
+          "2": 1.0,
+          "3": 1.0
+        },
+        "TOXIC_NEGATED": {
+          "0": 1.0,
+          "1": 1.0,
+          "2": 1.0,
+          "3": 1.0
+        },
+        "MULTI_PARTIAL": {
+          "0": 1.0,
+          "1": 1.0,
+          "2": 1.0,
+          "3": 1.0
+        },
+        "MULTI_ALL_PURIFIED": {
+          "0": 1.0,
+          "1": 1.0,
+          "2": 1.0,
+          "3": 1.0
+        },
+        "ALIAS_PURIFIED": {
+          "0": 1.0,
+          "1": 1.0,
+          "2": 1.0,
+          "3": 1.0
+        },
+        "PLANTPART_PURIFIED": {
+          "0": 1.0,
+          "1": 1.0,
+          "2": 1.0,
+          "3": 1.0
+        }
+      }
+    },
+    "crf": {
+      "model": "crf",
+      "overall_accuracy_by_window": {
+        "0": 1.0,
+        "1": 1.0,
+        "2": 1.0,
+        "3": 0.9
+      },
+      "hitl_count_by_window": {},
+      "per_kind_by_window": {
+        "SAFE_HERB": {
+          "0": 1.0,
+          "1": 1.0,
+          "2": 1.0,
+          "3": 1.0
+        },
+        "TOXIC_PURIFIED": {
+          "0": 1.0,
+          "1": 1.0,
+          "2": 1.0,
+          "3": 1.0
+        },
+        "TOXIC_ADJACENT": {
+          "0": 1.0,
+          "1": 1.0,
+          "2": 1.0,
+          "3": 1.0
+        },
+        "TOXIC_DISTANT": {
+          "0": 1.0,
+          "1": 1.0,
+          "2": 1.0,
+          "3": 0.0
+        },
+        "TOXIC_UNPURIFIED": {
+          "0": 1.0,
+          "1": 1.0,
+          "2": 1.0,
+          "3": 1.0
+        },
+        "TOXIC_NEGATED": {
+          "0": 1.0,
+          "1": 1.0,
+          "2": 1.0,
+          "3": 1.0
+        },
+        "MULTI_PARTIAL": {
+          "0": 1.0,
+          "1": 1.0,
+          "2": 1.0,
+          "3": 1.0
+        },
+        "MULTI_ALL_PURIFIED": {
+          "0": 1.0,
+          "1": 1.0,
+          "2": 1.0,
+          "3": 1.0
+        },
+        "ALIAS_PURIFIED": {
+          "0": 1.0,
+          "1": 1.0,
+          "2": 1.0,
+          "3": 1.0
+        },
+        "PLANTPART_PURIFIED": {
+          "0": 1.0,
+          "1": 1.0,
+          "2": 1.0,
+          "3": 1.0
+        }
+      }
+    }
+  },
+  "cascade_failure_sweep": {
+    "rule_only": {
+      "0.0": 1.0,
+      "0.05": 0.9714285714285714,
+      "0.1": 0.9,
+      "0.2": 0.8714285714285714,
+      "0.3": 0.8571428571428571,
+      "0.5": 0.8
+    },
+    "crf": {
+      "0.0": 1.0,
+      "0.05": 0.9714285714285714,
+      "0.1": 0.9,
+      "0.2": 0.8714285714285714,
+      "0.3": 0.8571428571428571,
+      "0.5": 0.8
+    }
+  }
+}

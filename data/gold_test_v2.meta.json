@@ -1,0 +1,2848 @@
+{
+  "seed": 2026,
+  "n_sequences": 315,
+  "n_ambiguous": 304,
+  "bucket_counts": {
+    "EASY": 100,
+    "MED": 100,
+    "HARD": 100,
+    "EXPERT": 15
+  },
+  "records": [
+    {
+      "seq_id": 0,
+      "bucket": "EASY",
+      "n_sentences": 2,
+      "n_tokens": 21,
+      "n_stops": 2,
+      "lf_disagreement": 4,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 1,
+      "bucket": "EASY",
+      "n_sentences": 2,
+      "n_tokens": 23,
+      "n_stops": 2,
+      "lf_disagreement": 2,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 2,
+      "bucket": "EASY",
+      "n_sentences": 2,
+      "n_tokens": 16,
+      "n_stops": 2,
+      "lf_disagreement": 0,
+      "ambiguous": false
+    },
+    {
+      "seq_id": 3,
+      "bucket": "EASY",
+      "n_sentences": 2,
+      "n_tokens": 22,
+      "n_stops": 2,
+      "lf_disagreement": 5,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 4,
+      "bucket": "EASY",
+      "n_sentences": 2,
+      "n_tokens": 20,
+      "n_stops": 2,
+      "lf_disagreement": 3,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 5,
+      "bucket": "EASY",
+      "n_sentences": 2,
+      "n_tokens": 23,
+      "n_stops": 2,
+      "lf_disagreement": 1,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 6,
+      "bucket": "EASY",
+      "n_sentences": 2,
+      "n_tokens": 19,
+      "n_stops": 2,
+      "lf_disagreement": 3,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 7,
+      "bucket": "EASY",
+      "n_sentences": 2,
+      "n_tokens": 23,
+      "n_stops": 2,
+      "lf_disagreement": 5,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 8,
+      "bucket": "EASY",
+      "n_sentences": 2,
+      "n_tokens": 26,
+      "n_stops": 2,
+      "lf_disagreement": 3,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 9,
+      "bucket": "EASY",
+      "n_sentences": 2,
+      "n_tokens": 23,
+      "n_stops": 2,
+      "lf_disagreement": 2,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 10,
+      "bucket": "EASY",
+      "n_sentences": 2,
+      "n_tokens": 25,
+      "n_stops": 2,
+      "lf_disagreement": 2,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 11,
+      "bucket": "EASY",
+      "n_sentences": 2,
+      "n_tokens": 22,
+      "n_stops": 2,
+      "lf_disagreement": 3,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 12,
+      "bucket": "EASY",
+      "n_sentences": 2,
+      "n_tokens": 29,
+      "n_stops": 2,
+      "lf_disagreement": 2,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 13,
+      "bucket": "EASY",
+      "n_sentences": 2,
+      "n_tokens": 22,
+      "n_stops": 2,
+      "lf_disagreement": 4,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 14,
+      "bucket": "EASY",
+      "n_sentences": 2,
+      "n_tokens": 25,
+      "n_stops": 2,
+      "lf_disagreement": 2,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 15,
+      "bucket": "EASY",
+      "n_sentences": 2,
+      "n_tokens": 21,
+      "n_stops": 2,
+      "lf_disagreement": 6,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 16,
+      "bucket": "EASY",
+      "n_sentences": 2,
+      "n_tokens": 22,
+      "n_stops": 2,
+      "lf_disagreement": 4,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 17,
+      "bucket": "EASY",
+      "n_sentences": 2,
+      "n_tokens": 20,
+      "n_stops": 2,
+      "lf_disagreement": 1,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 18,
+      "bucket": "EASY",
+      "n_sentences": 2,
+      "n_tokens": 17,
+      "n_stops": 2,
+      "lf_disagreement": 3,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 19,
+      "bucket": "EASY",
+      "n_sentences": 2,
+      "n_tokens": 21,
+      "n_stops": 2,
+      "lf_disagreement": 4,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 20,
+      "bucket": "EASY",
+      "n_sentences": 2,
+      "n_tokens": 20,
+      "n_stops": 2,
+      "lf_disagreement": 1,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 21,
+      "bucket": "EASY",
+      "n_sentences": 2,
+      "n_tokens": 26,
+      "n_stops": 2,
+      "lf_disagreement": 4,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 22,
+      "bucket": "EASY",
+      "n_sentences": 2,
+      "n_tokens": 21,
+      "n_stops": 2,
+      "lf_disagreement": 4,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 23,
+      "bucket": "EASY",
+      "n_sentences": 2,
+      "n_tokens": 24,
+      "n_stops": 2,
+      "lf_disagreement": 2,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 24,
+      "bucket": "EASY",
+      "n_sentences": 2,
+      "n_tokens": 21,
+      "n_stops": 2,
+      "lf_disagreement": 3,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 25,
+      "bucket": "EASY",
+      "n_sentences": 2,
+      "n_tokens": 16,
+      "n_stops": 2,
+      "lf_disagreement": 3,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 26,
+      "bucket": "EASY",
+      "n_sentences": 2,
+      "n_tokens": 24,
+      "n_stops": 2,
+      "lf_disagreement": 4,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 27,
+      "bucket": "EASY",
+      "n_sentences": 2,
+      "n_tokens": 21,
+      "n_stops": 2,
+      "lf_disagreement": 6,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 28,
+      "bucket": "EASY",
+      "n_sentences": 2,
+      "n_tokens": 24,
+      "n_stops": 2,
+      "lf_disagreement": 2,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 29,
+      "bucket": "EASY",
+      "n_sentences": 2,
+      "n_tokens": 23,
+      "n_stops": 2,
+      "lf_disagreement": 0,
+      "ambiguous": false
+    },
+    {
+      "seq_id": 30,
+      "bucket": "EASY",
+      "n_sentences": 2,
+      "n_tokens": 22,
+      "n_stops": 2,
+      "lf_disagreement": 1,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 31,
+      "bucket": "EASY",
+      "n_sentences": 2,
+      "n_tokens": 22,
+      "n_stops": 2,
+      "lf_disagreement": 3,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 32,
+      "bucket": "EASY",
+      "n_sentences": 2,
+      "n_tokens": 21,
+      "n_stops": 2,
+      "lf_disagreement": 3,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 33,
+      "bucket": "EASY",
+      "n_sentences": 2,
+      "n_tokens": 24,
+      "n_stops": 2,
+      "lf_disagreement": 1,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 34,
+      "bucket": "EASY",
+      "n_sentences": 2,
+      "n_tokens": 26,
+      "n_stops": 2,
+      "lf_disagreement": 1,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 35,
+      "bucket": "EASY",
+      "n_sentences": 2,
+      "n_tokens": 19,
+      "n_stops": 2,
+      "lf_disagreement": 1,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 36,
+      "bucket": "EASY",
+      "n_sentences": 2,
+      "n_tokens": 21,
+      "n_stops": 2,
+      "lf_disagreement": 3,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 37,
+      "bucket": "EASY",
+      "n_sentences": 2,
+      "n_tokens": 21,
+      "n_stops": 2,
+      "lf_disagreement": 4,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 38,
+      "bucket": "EASY",
+      "n_sentences": 2,
+      "n_tokens": 27,
+      "n_stops": 2,
+      "lf_disagreement": 5,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 39,
+      "bucket": "EASY",
+      "n_sentences": 2,
+      "n_tokens": 26,
+      "n_stops": 2,
+      "lf_disagreement": 4,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 40,
+      "bucket": "EASY",
+      "n_sentences": 2,
+      "n_tokens": 18,
+      "n_stops": 2,
+      "lf_disagreement": 2,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 41,
+      "bucket": "EASY",
+      "n_sentences": 2,
+      "n_tokens": 22,
+      "n_stops": 2,
+      "lf_disagreement": 5,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 42,
+      "bucket": "EASY",
+      "n_sentences": 2,
+      "n_tokens": 25,
+      "n_stops": 2,
+      "lf_disagreement": 4,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 43,
+      "bucket": "EASY",
+      "n_sentences": 2,
+      "n_tokens": 18,
+      "n_stops": 2,
+      "lf_disagreement": 3,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 44,
+      "bucket": "EASY",
+      "n_sentences": 2,
+      "n_tokens": 26,
+      "n_stops": 2,
+      "lf_disagreement": 3,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 45,
+      "bucket": "EASY",
+      "n_sentences": 2,
+      "n_tokens": 20,
+      "n_stops": 2,
+      "lf_disagreement": 4,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 46,
+      "bucket": "EASY",
+      "n_sentences": 2,
+      "n_tokens": 21,
+      "n_stops": 2,
+      "lf_disagreement": 5,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 47,
+      "bucket": "EASY",
+      "n_sentences": 2,
+      "n_tokens": 19,
+      "n_stops": 2,
+      "lf_disagreement": 1,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 48,
+      "bucket": "EASY",
+      "n_sentences": 2,
+      "n_tokens": 26,
+      "n_stops": 2,
+      "lf_disagreement": 3,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 49,
+      "bucket": "EASY",
+      "n_sentences": 2,
+      "n_tokens": 26,
+      "n_stops": 2,
+      "lf_disagreement": 3,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 50,
+      "bucket": "EASY",
+      "n_sentences": 2,
+      "n_tokens": 21,
+      "n_stops": 2,
+      "lf_disagreement": 2,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 51,
+      "bucket": "EASY",
+      "n_sentences": 2,
+      "n_tokens": 22,
+      "n_stops": 2,
+      "lf_disagreement": 3,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 52,
+      "bucket": "EASY",
+      "n_sentences": 2,
+      "n_tokens": 22,
+      "n_stops": 2,
+      "lf_disagreement": 3,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 53,
+      "bucket": "EASY",
+      "n_sentences": 2,
+      "n_tokens": 25,
+      "n_stops": 2,
+      "lf_disagreement": 1,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 54,
+      "bucket": "EASY",
+      "n_sentences": 2,
+      "n_tokens": 23,
+      "n_stops": 2,
+      "lf_disagreement": 7,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 55,
+      "bucket": "EASY",
+      "n_sentences": 2,
+      "n_tokens": 20,
+      "n_stops": 2,
+      "lf_disagreement": 3,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 56,
+      "bucket": "EASY",
+      "n_sentences": 2,
+      "n_tokens": 21,
+      "n_stops": 2,
+      "lf_disagreement": 1,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 57,
+      "bucket": "EASY",
+      "n_sentences": 2,
+      "n_tokens": 23,
+      "n_stops": 2,
+      "lf_disagreement": 4,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 58,
+      "bucket": "EASY",
+      "n_sentences": 2,
+      "n_tokens": 20,
+      "n_stops": 2,
+      "lf_disagreement": 3,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 59,
+      "bucket": "EASY",
+      "n_sentences": 2,
+      "n_tokens": 19,
+      "n_stops": 2,
+      "lf_disagreement": 5,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 60,
+      "bucket": "EASY",
+      "n_sentences": 2,
+      "n_tokens": 24,
+      "n_stops": 2,
+      "lf_disagreement": 5,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 61,
+      "bucket": "EASY",
+      "n_sentences": 2,
+      "n_tokens": 22,
+      "n_stops": 2,
+      "lf_disagreement": 2,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 62,
+      "bucket": "EASY",
+      "n_sentences": 2,
+      "n_tokens": 20,
+      "n_stops": 2,
+      "lf_disagreement": 4,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 63,
+      "bucket": "EASY",
+      "n_sentences": 2,
+      "n_tokens": 23,
+      "n_stops": 2,
+      "lf_disagreement": 2,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 64,
+      "bucket": "EASY",
+      "n_sentences": 2,
+      "n_tokens": 25,
+      "n_stops": 2,
+      "lf_disagreement": 6,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 65,
+      "bucket": "EASY",
+      "n_sentences": 2,
+      "n_tokens": 20,
+      "n_stops": 2,
+      "lf_disagreement": 2,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 66,
+      "bucket": "EASY",
+      "n_sentences": 2,
+      "n_tokens": 18,
+      "n_stops": 2,
+      "lf_disagreement": 3,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 67,
+      "bucket": "EASY",
+      "n_sentences": 2,
+      "n_tokens": 23,
+      "n_stops": 2,
+      "lf_disagreement": 6,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 68,
+      "bucket": "EASY",
+      "n_sentences": 2,
+      "n_tokens": 20,
+      "n_stops": 2,
+      "lf_disagreement": 3,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 69,
+      "bucket": "EASY",
+      "n_sentences": 2,
+      "n_tokens": 23,
+      "n_stops": 2,
+      "lf_disagreement": 4,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 70,
+      "bucket": "EASY",
+      "n_sentences": 2,
+      "n_tokens": 24,
+      "n_stops": 2,
+      "lf_disagreement": 3,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 71,
+      "bucket": "EASY",
+      "n_sentences": 2,
+      "n_tokens": 26,
+      "n_stops": 2,
+      "lf_disagreement": 6,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 72,
+      "bucket": "EASY",
+      "n_sentences": 2,
+      "n_tokens": 25,
+      "n_stops": 2,
+      "lf_disagreement": 5,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 73,
+      "bucket": "EASY",
+      "n_sentences": 2,
+      "n_tokens": 20,
+      "n_stops": 2,
+      "lf_disagreement": 4,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 74,
+      "bucket": "EASY",
+      "n_sentences": 2,
+      "n_tokens": 19,
+      "n_stops": 2,
+      "lf_disagreement": 2,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 75,
+      "bucket": "EASY",
+      "n_sentences": 2,
+      "n_tokens": 23,
+      "n_stops": 2,
+      "lf_disagreement": 3,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 76,
+      "bucket": "EASY",
+      "n_sentences": 2,
+      "n_tokens": 18,
+      "n_stops": 2,
+      "lf_disagreement": 3,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 77,
+      "bucket": "EASY",
+      "n_sentences": 2,
+      "n_tokens": 22,
+      "n_stops": 2,
+      "lf_disagreement": 3,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 78,
+      "bucket": "EASY",
+      "n_sentences": 2,
+      "n_tokens": 25,
+      "n_stops": 2,
+      "lf_disagreement": 2,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 79,
+      "bucket": "EASY",
+      "n_sentences": 2,
+      "n_tokens": 24,
+      "n_stops": 2,
+      "lf_disagreement": 3,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 80,
+      "bucket": "EASY",
+      "n_sentences": 2,
+      "n_tokens": 22,
+      "n_stops": 2,
+      "lf_disagreement": 2,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 81,
+      "bucket": "EASY",
+      "n_sentences": 2,
+      "n_tokens": 25,
+      "n_stops": 2,
+      "lf_disagreement": 8,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 82,
+      "bucket": "EASY",
+      "n_sentences": 2,
+      "n_tokens": 23,
+      "n_stops": 2,
+      "lf_disagreement": 2,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 83,
+      "bucket": "EASY",
+      "n_sentences": 2,
+      "n_tokens": 27,
+      "n_stops": 2,
+      "lf_disagreement": 4,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 84,
+      "bucket": "EASY",
+      "n_sentences": 2,
+      "n_tokens": 23,
+      "n_stops": 2,
+      "lf_disagreement": 4,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 85,
+      "bucket": "EASY",
+      "n_sentences": 2,
+      "n_tokens": 23,
+      "n_stops": 2,
+      "lf_disagreement": 4,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 86,
+      "bucket": "EASY",
+      "n_sentences": 2,
+      "n_tokens": 26,
+      "n_stops": 2,
+      "lf_disagreement": 2,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 87,
+      "bucket": "EASY",
+      "n_sentences": 2,
+      "n_tokens": 24,
+      "n_stops": 2,
+      "lf_disagreement": 3,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 88,
+      "bucket": "EASY",
+      "n_sentences": 2,
+      "n_tokens": 24,
+      "n_stops": 2,
+      "lf_disagreement": 4,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 89,
+      "bucket": "EASY",
+      "n_sentences": 2,
+      "n_tokens": 23,
+      "n_stops": 2,
+      "lf_disagreement": 3,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 90,
+      "bucket": "EASY",
+      "n_sentences": 2,
+      "n_tokens": 24,
+      "n_stops": 2,
+      "lf_disagreement": 3,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 91,
+      "bucket": "EASY",
+      "n_sentences": 2,
+      "n_tokens": 28,
+      "n_stops": 2,
+      "lf_disagreement": 6,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 92,
+      "bucket": "EASY",
+      "n_sentences": 2,
+      "n_tokens": 20,
+      "n_stops": 2,
+      "lf_disagreement": 1,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 93,
+      "bucket": "EASY",
+      "n_sentences": 2,
+      "n_tokens": 26,
+      "n_stops": 2,
+      "lf_disagreement": 3,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 94,
+      "bucket": "EASY",
+      "n_sentences": 2,
+      "n_tokens": 25,
+      "n_stops": 2,
+      "lf_disagreement": 4,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 95,
+      "bucket": "EASY",
+      "n_sentences": 2,
+      "n_tokens": 21,
+      "n_stops": 2,
+      "lf_disagreement": 3,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 96,
+      "bucket": "EASY",
+      "n_sentences": 2,
+      "n_tokens": 23,
+      "n_stops": 2,
+      "lf_disagreement": 5,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 97,
+      "bucket": "EASY",
+      "n_sentences": 2,
+      "n_tokens": 22,
+      "n_stops": 2,
+      "lf_disagreement": 3,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 98,
+      "bucket": "EASY",
+      "n_sentences": 2,
+      "n_tokens": 25,
+      "n_stops": 2,
+      "lf_disagreement": 5,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 99,
+      "bucket": "EASY",
+      "n_sentences": 2,
+      "n_tokens": 20,
+      "n_stops": 2,
+      "lf_disagreement": 4,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 100,
+      "bucket": "MED",
+      "n_sentences": 3,
+      "n_tokens": 30,
+      "n_stops": 3,
+      "lf_disagreement": 6,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 101,
+      "bucket": "MED",
+      "n_sentences": 3,
+      "n_tokens": 33,
+      "n_stops": 3,
+      "lf_disagreement": 6,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 102,
+      "bucket": "MED",
+      "n_sentences": 3,
+      "n_tokens": 29,
+      "n_stops": 3,
+      "lf_disagreement": 5,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 103,
+      "bucket": "MED",
+      "n_sentences": 4,
+      "n_tokens": 38,
+      "n_stops": 4,
+      "lf_disagreement": 4,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 104,
+      "bucket": "MED",
+      "n_sentences": 3,
+      "n_tokens": 32,
+      "n_stops": 3,
+      "lf_disagreement": 3,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 105,
+      "bucket": "MED",
+      "n_sentences": 4,
+      "n_tokens": 46,
+      "n_stops": 4,
+      "lf_disagreement": 7,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 106,
+      "bucket": "MED",
+      "n_sentences": 3,
+      "n_tokens": 37,
+      "n_stops": 3,
+      "lf_disagreement": 7,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 107,
+      "bucket": "MED",
+      "n_sentences": 3,
+      "n_tokens": 34,
+      "n_stops": 3,
+      "lf_disagreement": 3,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 108,
+      "bucket": "MED",
+      "n_sentences": 4,
+      "n_tokens": 48,
+      "n_stops": 4,
+      "lf_disagreement": 4,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 109,
+      "bucket": "MED",
+      "n_sentences": 4,
+      "n_tokens": 49,
+      "n_stops": 4,
+      "lf_disagreement": 6,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 110,
+      "bucket": "MED",
+      "n_sentences": 4,
+      "n_tokens": 37,
+      "n_stops": 4,
+      "lf_disagreement": 7,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 111,
+      "bucket": "MED",
+      "n_sentences": 4,
+      "n_tokens": 45,
+      "n_stops": 4,
+      "lf_disagreement": 4,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 112,
+      "bucket": "MED",
+      "n_sentences": 3,
+      "n_tokens": 29,
+      "n_stops": 3,
+      "lf_disagreement": 5,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 113,
+      "bucket": "MED",
+      "n_sentences": 4,
+      "n_tokens": 49,
+      "n_stops": 4,
+      "lf_disagreement": 6,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 114,
+      "bucket": "MED",
+      "n_sentences": 3,
+      "n_tokens": 32,
+      "n_stops": 3,
+      "lf_disagreement": 4,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 115,
+      "bucket": "MED",
+      "n_sentences": 4,
+      "n_tokens": 42,
+      "n_stops": 4,
+      "lf_disagreement": 7,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 116,
+      "bucket": "MED",
+      "n_sentences": 3,
+      "n_tokens": 37,
+      "n_stops": 3,
+      "lf_disagreement": 8,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 117,
+      "bucket": "MED",
+      "n_sentences": 4,
+      "n_tokens": 45,
+      "n_stops": 4,
+      "lf_disagreement": 7,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 118,
+      "bucket": "MED",
+      "n_sentences": 4,
+      "n_tokens": 45,
+      "n_stops": 4,
+      "lf_disagreement": 7,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 119,
+      "bucket": "MED",
+      "n_sentences": 4,
+      "n_tokens": 41,
+      "n_stops": 4,
+      "lf_disagreement": 7,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 120,
+      "bucket": "MED",
+      "n_sentences": 4,
+      "n_tokens": 44,
+      "n_stops": 4,
+      "lf_disagreement": 7,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 121,
+      "bucket": "MED",
+      "n_sentences": 4,
+      "n_tokens": 41,
+      "n_stops": 4,
+      "lf_disagreement": 7,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 122,
+      "bucket": "MED",
+      "n_sentences": 3,
+      "n_tokens": 39,
+      "n_stops": 3,
+      "lf_disagreement": 8,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 123,
+      "bucket": "MED",
+      "n_sentences": 4,
+      "n_tokens": 48,
+      "n_stops": 4,
+      "lf_disagreement": 6,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 124,
+      "bucket": "MED",
+      "n_sentences": 3,
+      "n_tokens": 31,
+      "n_stops": 3,
+      "lf_disagreement": 6,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 125,
+      "bucket": "MED",
+      "n_sentences": 3,
+      "n_tokens": 32,
+      "n_stops": 3,
+      "lf_disagreement": 5,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 126,
+      "bucket": "MED",
+      "n_sentences": 4,
+      "n_tokens": 46,
+      "n_stops": 4,
+      "lf_disagreement": 2,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 127,
+      "bucket": "MED",
+      "n_sentences": 3,
+      "n_tokens": 35,
+      "n_stops": 3,
+      "lf_disagreement": 3,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 128,
+      "bucket": "MED",
+      "n_sentences": 4,
+      "n_tokens": 43,
+      "n_stops": 4,
+      "lf_disagreement": 5,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 129,
+      "bucket": "MED",
+      "n_sentences": 4,
+      "n_tokens": 44,
+      "n_stops": 4,
+      "lf_disagreement": 7,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 130,
+      "bucket": "MED",
+      "n_sentences": 4,
+      "n_tokens": 42,
+      "n_stops": 4,
+      "lf_disagreement": 5,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 131,
+      "bucket": "MED",
+      "n_sentences": 4,
+      "n_tokens": 50,
+      "n_stops": 4,
+      "lf_disagreement": 9,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 132,
+      "bucket": "MED",
+      "n_sentences": 4,
+      "n_tokens": 51,
+      "n_stops": 4,
+      "lf_disagreement": 9,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 133,
+      "bucket": "MED",
+      "n_sentences": 4,
+      "n_tokens": 47,
+      "n_stops": 4,
+      "lf_disagreement": 10,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 134,
+      "bucket": "MED",
+      "n_sentences": 4,
+      "n_tokens": 49,
+      "n_stops": 4,
+      "lf_disagreement": 5,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 135,
+      "bucket": "MED",
+      "n_sentences": 4,
+      "n_tokens": 44,
+      "n_stops": 4,
+      "lf_disagreement": 5,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 136,
+      "bucket": "MED",
+      "n_sentences": 3,
+      "n_tokens": 33,
+      "n_stops": 3,
+      "lf_disagreement": 7,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 137,
+      "bucket": "MED",
+      "n_sentences": 4,
+      "n_tokens": 48,
+      "n_stops": 4,
+      "lf_disagreement": 13,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 138,
+      "bucket": "MED",
+      "n_sentences": 3,
+      "n_tokens": 34,
+      "n_stops": 3,
+      "lf_disagreement": 6,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 139,
+      "bucket": "MED",
+      "n_sentences": 3,
+      "n_tokens": 43,
+      "n_stops": 3,
+      "lf_disagreement": 8,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 140,
+      "bucket": "MED",
+      "n_sentences": 4,
+      "n_tokens": 45,
+      "n_stops": 4,
+      "lf_disagreement": 6,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 141,
+      "bucket": "MED",
+      "n_sentences": 3,
+      "n_tokens": 33,
+      "n_stops": 3,
+      "lf_disagreement": 7,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 142,
+      "bucket": "MED",
+      "n_sentences": 3,
+      "n_tokens": 35,
+      "n_stops": 3,
+      "lf_disagreement": 5,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 143,
+      "bucket": "MED",
+      "n_sentences": 4,
+      "n_tokens": 45,
+      "n_stops": 4,
+      "lf_disagreement": 7,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 144,
+      "bucket": "MED",
+      "n_sentences": 3,
+      "n_tokens": 32,
+      "n_stops": 3,
+      "lf_disagreement": 2,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 145,
+      "bucket": "MED",
+      "n_sentences": 3,
+      "n_tokens": 33,
+      "n_stops": 3,
+      "lf_disagreement": 5,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 146,
+      "bucket": "MED",
+      "n_sentences": 4,
+      "n_tokens": 52,
+      "n_stops": 4,
+      "lf_disagreement": 4,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 147,
+      "bucket": "MED",
+      "n_sentences": 3,
+      "n_tokens": 35,
+      "n_stops": 3,
+      "lf_disagreement": 4,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 148,
+      "bucket": "MED",
+      "n_sentences": 3,
+      "n_tokens": 33,
+      "n_stops": 3,
+      "lf_disagreement": 4,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 149,
+      "bucket": "MED",
+      "n_sentences": 4,
+      "n_tokens": 42,
+      "n_stops": 4,
+      "lf_disagreement": 5,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 150,
+      "bucket": "MED",
+      "n_sentences": 4,
+      "n_tokens": 48,
+      "n_stops": 4,
+      "lf_disagreement": 10,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 151,
+      "bucket": "MED",
+      "n_sentences": 3,
+      "n_tokens": 38,
+      "n_stops": 3,
+      "lf_disagreement": 4,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 152,
+      "bucket": "MED",
+      "n_sentences": 4,
+      "n_tokens": 48,
+      "n_stops": 4,
+      "lf_disagreement": 5,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 153,
+      "bucket": "MED",
+      "n_sentences": 4,
+      "n_tokens": 40,
+      "n_stops": 4,
+      "lf_disagreement": 6,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 154,
+      "bucket": "MED",
+      "n_sentences": 3,
+      "n_tokens": 29,
+      "n_stops": 3,
+      "lf_disagreement": 1,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 155,
+      "bucket": "MED",
+      "n_sentences": 4,
+      "n_tokens": 47,
+      "n_stops": 4,
+      "lf_disagreement": 8,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 156,
+      "bucket": "MED",
+      "n_sentences": 4,
+      "n_tokens": 51,
+      "n_stops": 4,
+      "lf_disagreement": 10,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 157,
+      "bucket": "MED",
+      "n_sentences": 3,
+      "n_tokens": 38,
+      "n_stops": 3,
+      "lf_disagreement": 7,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 158,
+      "bucket": "MED",
+      "n_sentences": 4,
+      "n_tokens": 43,
+      "n_stops": 4,
+      "lf_disagreement": 5,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 159,
+      "bucket": "MED",
+      "n_sentences": 4,
+      "n_tokens": 44,
+      "n_stops": 4,
+      "lf_disagreement": 8,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 160,
+      "bucket": "MED",
+      "n_sentences": 3,
+      "n_tokens": 33,
+      "n_stops": 3,
+      "lf_disagreement": 5,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 161,
+      "bucket": "MED",
+      "n_sentences": 4,
+      "n_tokens": 42,
+      "n_stops": 4,
+      "lf_disagreement": 9,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 162,
+      "bucket": "MED",
+      "n_sentences": 3,
+      "n_tokens": 31,
+      "n_stops": 3,
+      "lf_disagreement": 5,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 163,
+      "bucket": "MED",
+      "n_sentences": 3,
+      "n_tokens": 28,
+      "n_stops": 3,
+      "lf_disagreement": 7,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 164,
+      "bucket": "MED",
+      "n_sentences": 4,
+      "n_tokens": 35,
+      "n_stops": 4,
+      "lf_disagreement": 5,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 165,
+      "bucket": "MED",
+      "n_sentences": 3,
+      "n_tokens": 37,
+      "n_stops": 3,
+      "lf_disagreement": 7,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 166,
+      "bucket": "MED",
+      "n_sentences": 3,
+      "n_tokens": 37,
+      "n_stops": 3,
+      "lf_disagreement": 5,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 167,
+      "bucket": "MED",
+      "n_sentences": 4,
+      "n_tokens": 38,
+      "n_stops": 4,
+      "lf_disagreement": 6,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 168,
+      "bucket": "MED",
+      "n_sentences": 3,
+      "n_tokens": 32,
+      "n_stops": 3,
+      "lf_disagreement": 4,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 169,
+      "bucket": "MED",
+      "n_sentences": 3,
+      "n_tokens": 31,
+      "n_stops": 3,
+      "lf_disagreement": 4,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 170,
+      "bucket": "MED",
+      "n_sentences": 4,
+      "n_tokens": 48,
+      "n_stops": 4,
+      "lf_disagreement": 3,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 171,
+      "bucket": "MED",
+      "n_sentences": 4,
+      "n_tokens": 41,
+      "n_stops": 4,
+      "lf_disagreement": 6,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 172,
+      "bucket": "MED",
+      "n_sentences": 4,
+      "n_tokens": 44,
+      "n_stops": 4,
+      "lf_disagreement": 2,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 173,
+      "bucket": "MED",
+      "n_sentences": 3,
+      "n_tokens": 39,
+      "n_stops": 3,
+      "lf_disagreement": 5,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 174,
+      "bucket": "MED",
+      "n_sentences": 4,
+      "n_tokens": 48,
+      "n_stops": 4,
+      "lf_disagreement": 9,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 175,
+      "bucket": "MED",
+      "n_sentences": 3,
+      "n_tokens": 35,
+      "n_stops": 3,
+      "lf_disagreement": 3,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 176,
+      "bucket": "MED",
+      "n_sentences": 3,
+      "n_tokens": 33,
+      "n_stops": 3,
+      "lf_disagreement": 8,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 177,
+      "bucket": "MED",
+      "n_sentences": 4,
+      "n_tokens": 42,
+      "n_stops": 4,
+      "lf_disagreement": 6,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 178,
+      "bucket": "MED",
+      "n_sentences": 4,
+      "n_tokens": 39,
+      "n_stops": 4,
+      "lf_disagreement": 1,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 179,
+      "bucket": "MED",
+      "n_sentences": 4,
+      "n_tokens": 54,
+      "n_stops": 4,
+      "lf_disagreement": 12,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 180,
+      "bucket": "MED",
+      "n_sentences": 3,
+      "n_tokens": 27,
+      "n_stops": 3,
+      "lf_disagreement": 6,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 181,
+      "bucket": "MED",
+      "n_sentences": 3,
+      "n_tokens": 30,
+      "n_stops": 3,
+      "lf_disagreement": 2,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 182,
+      "bucket": "MED",
+      "n_sentences": 3,
+      "n_tokens": 39,
+      "n_stops": 3,
+      "lf_disagreement": 4,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 183,
+      "bucket": "MED",
+      "n_sentences": 4,
+      "n_tokens": 48,
+      "n_stops": 4,
+      "lf_disagreement": 4,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 184,
+      "bucket": "MED",
+      "n_sentences": 4,
+      "n_tokens": 49,
+      "n_stops": 4,
+      "lf_disagreement": 9,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 185,
+      "bucket": "MED",
+      "n_sentences": 4,
+      "n_tokens": 48,
+      "n_stops": 4,
+      "lf_disagreement": 7,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 186,
+      "bucket": "MED",
+      "n_sentences": 4,
+      "n_tokens": 42,
+      "n_stops": 4,
+      "lf_disagreement": 5,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 187,
+      "bucket": "MED",
+      "n_sentences": 4,
+      "n_tokens": 46,
+      "n_stops": 4,
+      "lf_disagreement": 6,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 188,
+      "bucket": "MED",
+      "n_sentences": 3,
+      "n_tokens": 28,
+      "n_stops": 3,
+      "lf_disagreement": 3,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 189,
+      "bucket": "MED",
+      "n_sentences": 3,
+      "n_tokens": 37,
+      "n_stops": 3,
+      "lf_disagreement": 5,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 190,
+      "bucket": "MED",
+      "n_sentences": 4,
+      "n_tokens": 45,
+      "n_stops": 4,
+      "lf_disagreement": 7,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 191,
+      "bucket": "MED",
+      "n_sentences": 3,
+      "n_tokens": 41,
+      "n_stops": 3,
+      "lf_disagreement": 5,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 192,
+      "bucket": "MED",
+      "n_sentences": 3,
+      "n_tokens": 33,
+      "n_stops": 3,
+      "lf_disagreement": 2,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 193,
+      "bucket": "MED",
+      "n_sentences": 3,
+      "n_tokens": 35,
+      "n_stops": 3,
+      "lf_disagreement": 4,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 194,
+      "bucket": "MED",
+      "n_sentences": 3,
+      "n_tokens": 34,
+      "n_stops": 3,
+      "lf_disagreement": 6,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 195,
+      "bucket": "MED",
+      "n_sentences": 3,
+      "n_tokens": 29,
+      "n_stops": 3,
+      "lf_disagreement": 5,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 196,
+      "bucket": "MED",
+      "n_sentences": 4,
+      "n_tokens": 40,
+      "n_stops": 4,
+      "lf_disagreement": 3,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 197,
+      "bucket": "MED",
+      "n_sentences": 4,
+      "n_tokens": 44,
+      "n_stops": 4,
+      "lf_disagreement": 5,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 198,
+      "bucket": "MED",
+      "n_sentences": 3,
+      "n_tokens": 32,
+      "n_stops": 3,
+      "lf_disagreement": 4,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 199,
+      "bucket": "MED",
+      "n_sentences": 4,
+      "n_tokens": 44,
+      "n_stops": 4,
+      "lf_disagreement": 3,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 200,
+      "bucket": "HARD",
+      "n_sentences": 6,
+      "n_tokens": 70,
+      "n_stops": 6,
+      "lf_disagreement": 8,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 201,
+      "bucket": "HARD",
+      "n_sentences": 6,
+      "n_tokens": 65,
+      "n_stops": 6,
+      "lf_disagreement": 8,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 202,
+      "bucket": "HARD",
+      "n_sentences": 6,
+      "n_tokens": 69,
+      "n_stops": 6,
+      "lf_disagreement": 11,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 203,
+      "bucket": "HARD",
+      "n_sentences": 7,
+      "n_tokens": 81,
+      "n_stops": 7,
+      "lf_disagreement": 14,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 204,
+      "bucket": "HARD",
+      "n_sentences": 6,
+      "n_tokens": 68,
+      "n_stops": 6,
+      "lf_disagreement": 8,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 205,
+      "bucket": "HARD",
+      "n_sentences": 7,
+      "n_tokens": 78,
+      "n_stops": 7,
+      "lf_disagreement": 13,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 206,
+      "bucket": "HARD",
+      "n_sentences": 7,
+      "n_tokens": 72,
+      "n_stops": 7,
+      "lf_disagreement": 9,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 207,
+      "bucket": "HARD",
+      "n_sentences": 5,
+      "n_tokens": 57,
+      "n_stops": 5,
+      "lf_disagreement": 6,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 208,
+      "bucket": "HARD",
+      "n_sentences": 7,
+      "n_tokens": 83,
+      "n_stops": 7,
+      "lf_disagreement": 12,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 209,
+      "bucket": "HARD",
+      "n_sentences": 6,
+      "n_tokens": 72,
+      "n_stops": 6,
+      "lf_disagreement": 10,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 210,
+      "bucket": "HARD",
+      "n_sentences": 7,
+      "n_tokens": 80,
+      "n_stops": 7,
+      "lf_disagreement": 15,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 211,
+      "bucket": "HARD",
+      "n_sentences": 5,
+      "n_tokens": 51,
+      "n_stops": 5,
+      "lf_disagreement": 6,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 212,
+      "bucket": "HARD",
+      "n_sentences": 5,
+      "n_tokens": 52,
+      "n_stops": 5,
+      "lf_disagreement": 11,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 213,
+      "bucket": "HARD",
+      "n_sentences": 6,
+      "n_tokens": 71,
+      "n_stops": 6,
+      "lf_disagreement": 7,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 214,
+      "bucket": "HARD",
+      "n_sentences": 5,
+      "n_tokens": 64,
+      "n_stops": 5,
+      "lf_disagreement": 4,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 215,
+      "bucket": "HARD",
+      "n_sentences": 7,
+      "n_tokens": 86,
+      "n_stops": 7,
+      "lf_disagreement": 15,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 216,
+      "bucket": "HARD",
+      "n_sentences": 5,
+      "n_tokens": 56,
+      "n_stops": 5,
+      "lf_disagreement": 7,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 217,
+      "bucket": "HARD",
+      "n_sentences": 5,
+      "n_tokens": 54,
+      "n_stops": 5,
+      "lf_disagreement": 7,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 218,
+      "bucket": "HARD",
+      "n_sentences": 5,
+      "n_tokens": 57,
+      "n_stops": 5,
+      "lf_disagreement": 7,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 219,
+      "bucket": "HARD",
+      "n_sentences": 5,
+      "n_tokens": 56,
+      "n_stops": 5,
+      "lf_disagreement": 6,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 220,
+      "bucket": "HARD",
+      "n_sentences": 7,
+      "n_tokens": 75,
+      "n_stops": 7,
+      "lf_disagreement": 9,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 221,
+      "bucket": "HARD",
+      "n_sentences": 5,
+      "n_tokens": 62,
+      "n_stops": 5,
+      "lf_disagreement": 7,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 222,
+      "bucket": "HARD",
+      "n_sentences": 5,
+      "n_tokens": 57,
+      "n_stops": 5,
+      "lf_disagreement": 9,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 223,
+      "bucket": "HARD",
+      "n_sentences": 6,
+      "n_tokens": 60,
+      "n_stops": 6,
+      "lf_disagreement": 7,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 224,
+      "bucket": "HARD",
+      "n_sentences": 6,
+      "n_tokens": 65,
+      "n_stops": 6,
+      "lf_disagreement": 5,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 225,
+      "bucket": "HARD",
+      "n_sentences": 7,
+      "n_tokens": 80,
+      "n_stops": 7,
+      "lf_disagreement": 8,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 226,
+      "bucket": "HARD",
+      "n_sentences": 5,
+      "n_tokens": 58,
+      "n_stops": 5,
+      "lf_disagreement": 7,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 227,
+      "bucket": "HARD",
+      "n_sentences": 5,
+      "n_tokens": 63,
+      "n_stops": 5,
+      "lf_disagreement": 13,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 228,
+      "bucket": "HARD",
+      "n_sentences": 7,
+      "n_tokens": 79,
+      "n_stops": 7,
+      "lf_disagreement": 11,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 229,
+      "bucket": "HARD",
+      "n_sentences": 5,
+      "n_tokens": 55,
+      "n_stops": 5,
+      "lf_disagreement": 8,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 230,
+      "bucket": "HARD",
+      "n_sentences": 6,
+      "n_tokens": 64,
+      "n_stops": 6,
+      "lf_disagreement": 9,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 231,
+      "bucket": "HARD",
+      "n_sentences": 7,
+      "n_tokens": 75,
+      "n_stops": 7,
+      "lf_disagreement": 9,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 232,
+      "bucket": "HARD",
+      "n_sentences": 5,
+      "n_tokens": 56,
+      "n_stops": 5,
+      "lf_disagreement": 9,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 233,
+      "bucket": "HARD",
+      "n_sentences": 6,
+      "n_tokens": 71,
+      "n_stops": 6,
+      "lf_disagreement": 8,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 234,
+      "bucket": "HARD",
+      "n_sentences": 6,
+      "n_tokens": 60,
+      "n_stops": 6,
+      "lf_disagreement": 8,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 235,
+      "bucket": "HARD",
+      "n_sentences": 5,
+      "n_tokens": 53,
+      "n_stops": 5,
+      "lf_disagreement": 6,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 236,
+      "bucket": "HARD",
+      "n_sentences": 5,
+      "n_tokens": 55,
+      "n_stops": 5,
+      "lf_disagreement": 13,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 237,
+      "bucket": "HARD",
+      "n_sentences": 7,
+      "n_tokens": 76,
+      "n_stops": 7,
+      "lf_disagreement": 12,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 238,
+      "bucket": "HARD",
+      "n_sentences": 7,
+      "n_tokens": 86,
+      "n_stops": 7,
+      "lf_disagreement": 8,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 239,
+      "bucket": "HARD",
+      "n_sentences": 5,
+      "n_tokens": 64,
+      "n_stops": 5,
+      "lf_disagreement": 9,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 240,
+      "bucket": "HARD",
+      "n_sentences": 7,
+      "n_tokens": 69,
+      "n_stops": 7,
+      "lf_disagreement": 11,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 241,
+      "bucket": "HARD",
+      "n_sentences": 5,
+      "n_tokens": 61,
+      "n_stops": 5,
+      "lf_disagreement": 8,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 242,
+      "bucket": "HARD",
+      "n_sentences": 6,
+      "n_tokens": 67,
+      "n_stops": 6,
+      "lf_disagreement": 11,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 243,
+      "bucket": "HARD",
+      "n_sentences": 6,
+      "n_tokens": 74,
+      "n_stops": 6,
+      "lf_disagreement": 15,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 244,
+      "bucket": "HARD",
+      "n_sentences": 6,
+      "n_tokens": 65,
+      "n_stops": 6,
+      "lf_disagreement": 9,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 245,
+      "bucket": "HARD",
+      "n_sentences": 6,
+      "n_tokens": 70,
+      "n_stops": 6,
+      "lf_disagreement": 7,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 246,
+      "bucket": "HARD",
+      "n_sentences": 5,
+      "n_tokens": 48,
+      "n_stops": 5,
+      "lf_disagreement": 10,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 247,
+      "bucket": "HARD",
+      "n_sentences": 7,
+      "n_tokens": 75,
+      "n_stops": 7,
+      "lf_disagreement": 11,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 248,
+      "bucket": "HARD",
+      "n_sentences": 6,
+      "n_tokens": 62,
+      "n_stops": 6,
+      "lf_disagreement": 10,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 249,
+      "bucket": "HARD",
+      "n_sentences": 6,
+      "n_tokens": 64,
+      "n_stops": 6,
+      "lf_disagreement": 5,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 250,
+      "bucket": "HARD",
+      "n_sentences": 7,
+      "n_tokens": 70,
+      "n_stops": 7,
+      "lf_disagreement": 12,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 251,
+      "bucket": "HARD",
+      "n_sentences": 6,
+      "n_tokens": 72,
+      "n_stops": 6,
+      "lf_disagreement": 13,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 252,
+      "bucket": "HARD",
+      "n_sentences": 7,
+      "n_tokens": 70,
+      "n_stops": 7,
+      "lf_disagreement": 16,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 253,
+      "bucket": "HARD",
+      "n_sentences": 7,
+      "n_tokens": 80,
+      "n_stops": 7,
+      "lf_disagreement": 8,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 254,
+      "bucket": "HARD",
+      "n_sentences": 5,
+      "n_tokens": 52,
+      "n_stops": 5,
+      "lf_disagreement": 4,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 255,
+      "bucket": "HARD",
+      "n_sentences": 5,
+      "n_tokens": 56,
+      "n_stops": 5,
+      "lf_disagreement": 8,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 256,
+      "bucket": "HARD",
+      "n_sentences": 7,
+      "n_tokens": 82,
+      "n_stops": 7,
+      "lf_disagreement": 14,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 257,
+      "bucket": "HARD",
+      "n_sentences": 6,
+      "n_tokens": 71,
+      "n_stops": 6,
+      "lf_disagreement": 10,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 258,
+      "bucket": "HARD",
+      "n_sentences": 5,
+      "n_tokens": 55,
+      "n_stops": 5,
+      "lf_disagreement": 14,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 259,
+      "bucket": "HARD",
+      "n_sentences": 7,
+      "n_tokens": 79,
+      "n_stops": 7,
+      "lf_disagreement": 9,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 260,
+      "bucket": "HARD",
+      "n_sentences": 5,
+      "n_tokens": 54,
+      "n_stops": 5,
+      "lf_disagreement": 8,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 261,
+      "bucket": "HARD",
+      "n_sentences": 5,
+      "n_tokens": 57,
+      "n_stops": 5,
+      "lf_disagreement": 7,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 262,
+      "bucket": "HARD",
+      "n_sentences": 7,
+      "n_tokens": 94,
+      "n_stops": 7,
+      "lf_disagreement": 12,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 263,
+      "bucket": "HARD",
+      "n_sentences": 7,
+      "n_tokens": 72,
+      "n_stops": 7,
+      "lf_disagreement": 7,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 264,
+      "bucket": "HARD",
+      "n_sentences": 6,
+      "n_tokens": 72,
+      "n_stops": 6,
+      "lf_disagreement": 8,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 265,
+      "bucket": "HARD",
+      "n_sentences": 5,
+      "n_tokens": 54,
+      "n_stops": 5,
+      "lf_disagreement": 4,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 266,
+      "bucket": "HARD",
+      "n_sentences": 6,
+      "n_tokens": 72,
+      "n_stops": 6,
+      "lf_disagreement": 11,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 267,
+      "bucket": "HARD",
+      "n_sentences": 6,
+      "n_tokens": 68,
+      "n_stops": 6,
+      "lf_disagreement": 7,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 268,
+      "bucket": "HARD",
+      "n_sentences": 7,
+      "n_tokens": 71,
+      "n_stops": 7,
+      "lf_disagreement": 7,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 269,
+      "bucket": "HARD",
+      "n_sentences": 6,
+      "n_tokens": 70,
+      "n_stops": 6,
+      "lf_disagreement": 7,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 270,
+      "bucket": "HARD",
+      "n_sentences": 5,
+      "n_tokens": 53,
+      "n_stops": 5,
+      "lf_disagreement": 4,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 271,
+      "bucket": "HARD",
+      "n_sentences": 6,
+      "n_tokens": 65,
+      "n_stops": 6,
+      "lf_disagreement": 7,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 272,
+      "bucket": "HARD",
+      "n_sentences": 6,
+      "n_tokens": 60,
+      "n_stops": 6,
+      "lf_disagreement": 10,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 273,
+      "bucket": "HARD",
+      "n_sentences": 7,
+      "n_tokens": 84,
+      "n_stops": 7,
+      "lf_disagreement": 8,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 274,
+      "bucket": "HARD",
+      "n_sentences": 6,
+      "n_tokens": 67,
+      "n_stops": 6,
+      "lf_disagreement": 11,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 275,
+      "bucket": "HARD",
+      "n_sentences": 5,
+      "n_tokens": 57,
+      "n_stops": 5,
+      "lf_disagreement": 9,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 276,
+      "bucket": "HARD",
+      "n_sentences": 7,
+      "n_tokens": 73,
+      "n_stops": 7,
+      "lf_disagreement": 9,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 277,
+      "bucket": "HARD",
+      "n_sentences": 7,
+      "n_tokens": 77,
+      "n_stops": 7,
+      "lf_disagreement": 12,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 278,
+      "bucket": "HARD",
+      "n_sentences": 6,
+      "n_tokens": 67,
+      "n_stops": 6,
+      "lf_disagreement": 13,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 279,
+      "bucket": "HARD",
+      "n_sentences": 6,
+      "n_tokens": 68,
+      "n_stops": 6,
+      "lf_disagreement": 7,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 280,
+      "bucket": "HARD",
+      "n_sentences": 5,
+      "n_tokens": 53,
+      "n_stops": 5,
+      "lf_disagreement": 10,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 281,
+      "bucket": "HARD",
+      "n_sentences": 7,
+      "n_tokens": 83,
+      "n_stops": 7,
+      "lf_disagreement": 8,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 282,
+      "bucket": "HARD",
+      "n_sentences": 7,
+      "n_tokens": 77,
+      "n_stops": 7,
+      "lf_disagreement": 11,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 283,
+      "bucket": "HARD",
+      "n_sentences": 5,
+      "n_tokens": 51,
+      "n_stops": 5,
+      "lf_disagreement": 8,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 284,
+      "bucket": "HARD",
+      "n_sentences": 6,
+      "n_tokens": 65,
+      "n_stops": 6,
+      "lf_disagreement": 9,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 285,
+      "bucket": "HARD",
+      "n_sentences": 5,
+      "n_tokens": 51,
+      "n_stops": 5,
+      "lf_disagreement": 8,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 286,
+      "bucket": "HARD",
+      "n_sentences": 6,
+      "n_tokens": 59,
+      "n_stops": 6,
+      "lf_disagreement": 9,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 287,
+      "bucket": "HARD",
+      "n_sentences": 5,
+      "n_tokens": 56,
+      "n_stops": 5,
+      "lf_disagreement": 10,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 288,
+      "bucket": "HARD",
+      "n_sentences": 6,
+      "n_tokens": 64,
+      "n_stops": 6,
+      "lf_disagreement": 12,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 289,
+      "bucket": "HARD",
+      "n_sentences": 5,
+      "n_tokens": 58,
+      "n_stops": 5,
+      "lf_disagreement": 7,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 290,
+      "bucket": "HARD",
+      "n_sentences": 6,
+      "n_tokens": 64,
+      "n_stops": 6,
+      "lf_disagreement": 7,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 291,
+      "bucket": "HARD",
+      "n_sentences": 7,
+      "n_tokens": 74,
+      "n_stops": 7,
+      "lf_disagreement": 16,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 292,
+      "bucket": "HARD",
+      "n_sentences": 7,
+      "n_tokens": 78,
+      "n_stops": 7,
+      "lf_disagreement": 10,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 293,
+      "bucket": "HARD",
+      "n_sentences": 5,
+      "n_tokens": 65,
+      "n_stops": 5,
+      "lf_disagreement": 12,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 294,
+      "bucket": "HARD",
+      "n_sentences": 7,
+      "n_tokens": 86,
+      "n_stops": 7,
+      "lf_disagreement": 22,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 295,
+      "bucket": "HARD",
+      "n_sentences": 7,
+      "n_tokens": 89,
+      "n_stops": 7,
+      "lf_disagreement": 15,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 296,
+      "bucket": "HARD",
+      "n_sentences": 6,
+      "n_tokens": 59,
+      "n_stops": 6,
+      "lf_disagreement": 8,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 297,
+      "bucket": "HARD",
+      "n_sentences": 7,
+      "n_tokens": 75,
+      "n_stops": 7,
+      "lf_disagreement": 6,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 298,
+      "bucket": "HARD",
+      "n_sentences": 7,
+      "n_tokens": 74,
+      "n_stops": 7,
+      "lf_disagreement": 9,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 299,
+      "bucket": "HARD",
+      "n_sentences": 5,
+      "n_tokens": 56,
+      "n_stops": 5,
+      "lf_disagreement": 7,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 300,
+      "bucket": "EXPERT",
+      "n_sentences": 1,
+      "n_tokens": 20,
+      "n_stops": 1,
+      "lf_disagreement": 1,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 301,
+      "bucket": "EXPERT",
+      "n_sentences": 1,
+      "n_tokens": 13,
+      "n_stops": 1,
+      "lf_disagreement": 1,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 302,
+      "bucket": "EXPERT",
+      "n_sentences": 1,
+      "n_tokens": 10,
+      "n_stops": 1,
+      "lf_disagreement": 0,
+      "ambiguous": false
+    },
+    {
+      "seq_id": 303,
+      "bucket": "EXPERT",
+      "n_sentences": 1,
+      "n_tokens": 10,
+      "n_stops": 1,
+      "lf_disagreement": 0,
+      "ambiguous": false
+    },
+    {
+      "seq_id": 304,
+      "bucket": "EXPERT",
+      "n_sentences": 1,
+      "n_tokens": 10,
+      "n_stops": 1,
+      "lf_disagreement": 0,
+      "ambiguous": false
+    },
+    {
+      "seq_id": 305,
+      "bucket": "EXPERT",
+      "n_sentences": 1,
+      "n_tokens": 13,
+      "n_stops": 1,
+      "lf_disagreement": 0,
+      "ambiguous": false
+    },
+    {
+      "seq_id": 306,
+      "bucket": "EXPERT",
+      "n_sentences": 1,
+      "n_tokens": 10,
+      "n_stops": 1,
+      "lf_disagreement": 1,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 307,
+      "bucket": "EXPERT",
+      "n_sentences": 1,
+      "n_tokens": 14,
+      "n_stops": 1,
+      "lf_disagreement": 0,
+      "ambiguous": false
+    },
+    {
+      "seq_id": 308,
+      "bucket": "EXPERT",
+      "n_sentences": 1,
+      "n_tokens": 8,
+      "n_stops": 1,
+      "lf_disagreement": 0,
+      "ambiguous": false
+    },
+    {
+      "seq_id": 309,
+      "bucket": "EXPERT",
+      "n_sentences": 1,
+      "n_tokens": 14,
+      "n_stops": 1,
+      "lf_disagreement": 1,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 310,
+      "bucket": "EXPERT",
+      "n_sentences": 1,
+      "n_tokens": 15,
+      "n_stops": 1,
+      "lf_disagreement": 1,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 311,
+      "bucket": "EXPERT",
+      "n_sentences": 1,
+      "n_tokens": 11,
+      "n_stops": 1,
+      "lf_disagreement": 0,
+      "ambiguous": false
+    },
+    {
+      "seq_id": 312,
+      "bucket": "EXPERT",
+      "n_sentences": 1,
+      "n_tokens": 12,
+      "n_stops": 1,
+      "lf_disagreement": 1,
+      "ambiguous": true
+    },
+    {
+      "seq_id": 313,
+      "bucket": "EXPERT",
+      "n_sentences": 1,
+      "n_tokens": 12,
+      "n_stops": 1,
+      "lf_disagreement": 0,
+      "ambiguous": false
+    },
+    {
+      "seq_id": 314,
+      "bucket": "EXPERT",
+      "n_sentences": 1,
+      "n_tokens": 12,
+      "n_stops": 1,
+      "lf_disagreement": 0,
+      "ambiguous": false
+    }
+  ]
+}

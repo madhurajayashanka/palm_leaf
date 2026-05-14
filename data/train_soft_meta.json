@@ -1,0 +1,51 @@
+{
+  "n_sequences": 12000,
+  "n_tokens": 736957,
+  "lf_names": [
+    "line_end",
+    "canon_suffix",
+    "ext_suffix",
+    "clinical_verb",
+    "negation",
+    "corpus_pend"
+  ],
+  "lf_accuracies": [
+    0.99,
+    0.99,
+    0.55,
+    0.8185463438277997,
+    0.55,
+    0.9711340010339816
+  ],
+  "lf_weights": [
+    4.595119850134589,
+    4.595119850134589,
+    0.2006706954621514,
+    1.5065297324390319,
+    0.2006706954621514,
+    3.5158000657690454
+  ],
+  "lf_coverage": [
+    0.08952761151600433,
+    0.06526160956473716,
+    0.17669959034244875,
+    0.061589753540572924,
+    0.0,
+    1.0
+  ],
+  "lf_polarity": [
+    "STOP-only",
+    "STOP-only",
+    "STOP-only",
+    "STOP-only",
+    "both",
+    "both"
+  ],
+  "anchor_lf": "line_end",
+  "threshold": 0.5,
+  "seed": 13,
+  "min_sents": 3,
+  "max_sents": 8,
+  "marginal_p_stop_soft": 0.10381872901124603,
+  "marginal_p_stop_hard": 0.0953827699580844
+}
